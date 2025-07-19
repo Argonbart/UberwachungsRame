@@ -1,7 +1,15 @@
 extends CharacterBody3D
 
 
+# enums
+enum WanderType {
+	HUMAN,
+	ROBOT,
+}
+
+
 # exports
+@export var wander_type: WanderType
 @export var mob_speed: float = 4.0
 @export var max_force: float = 0.4
 @export var timer_refresh_rate: float = 0.5  # seconds
@@ -14,10 +22,6 @@ var acceleration: Vector3 = Vector3.ZERO
 var target_position: Vector3
 var displacement: Vector3 = Vector3.ZERO
 var timer: Timer
-var white_material: StandardMaterial3D
-var red_material: StandardMaterial3D
-var running_from_poop: bool = false
-var current_poop
 
 
 func _ready():
@@ -29,12 +33,6 @@ func _ready():
 	timer.timeout.connect(refresh_direction)
 	self.add_child(timer)
 	
-	# create materials
-	white_material = StandardMaterial3D.new()
-	white_material.albedo_color = Color.WHITE
-	red_material = StandardMaterial3D.new()
-	red_material.albedo_color = Color.RED
-	
 	# set initial values
 	refresh_direction()
 	velocity = Vector3.FORWARD.rotated(Vector3.UP, randf_range(0, TAU)) * mob_speed
@@ -42,15 +40,16 @@ func _ready():
 
 func _physics_process(delta):
 	
+	# check wander type
+	if wander_type == WanderType.ROBOT:
+		acceleration = wander_robot()
+	else:
+		acceleration = wander_human()
+	
 	# set velocity
-	velocity += wander_human()
+	velocity += acceleration
 	if velocity.length() > mob_speed:
 		velocity = velocity.normalized() * mob_speed
-	
-	if running_from_poop:
-		var run_direction = global_transform.origin - current_poop.global_transform.origin
-		run_direction.y = 0.0
-		velocity = run_direction.normalized() * mob_speed * 2.0
 	
 	# move unit
 	move_and_slide()
@@ -82,6 +81,18 @@ func seek(target: Vector3) -> Vector3:
 	return steer
 
 
+func wander_robot() -> Vector3:
+	
+	var target_distance = target_position - global_transform.origin
+	target_distance.y = 0  # Flatten to X-Z plane
+	if target_distance.length() < 1.0:
+		refresh_direction()
+		timer.start()
+		return Vector3.ZERO
+	
+	return seek(target_position)
+
+
 func wander_human() -> Vector3:
 	var future = global_transform.origin + velocity.normalized() * wander_ring_distance
 	var offset = Vector3(wander_ring_radius, 0, 0).rotated(Vector3.UP, randf_range(0, TAU))
@@ -102,14 +113,3 @@ func get_random_nav_point() -> Vector3:
 	var x = randf_range(-50, 50)
 	var z = randf_range(-50, 50)
 	return Vector3(x, 0, z)
-
-
-func entered_poop(poop):
-	find_child("HumanModel").get_child(0).material_override = red_material
-	running_from_poop = true
-	current_poop = poop
-
-
-func exited_poop(poop):
-	find_child("HumanModel").get_child(0).material_override = white_material
-	running_from_poop = false

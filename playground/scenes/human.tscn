@@ -1,12 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://i0l73rfrm2ae"]
+[gd_scene load_steps=5 format=3 uid="uid://i0l73rfrm2ae"]
 
-[ext_resource type="Script" uid="uid://cmrq8duvr8kx6" path="res://scripts/human.gd" id="1_11jcu"]
+[ext_resource type="Script" uid="uid://b46ddbwxvpddk" path="res://scripts/human.gd" id="1_11jcu"]
 [ext_resource type="PackedScene" uid="uid://c5wguet7g4yes" path="res://assets/Human.glb" id="2_86l0o"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_86l0o"]
 radius = 0.831726
 
-[node name="Human" type="CharacterBody3D"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cwf78"]
+
+[node name="Human" type="CharacterBody3D" groups=["human"]]
 script = ExtResource("1_11jcu")
 mob_speed = 20.0
 max_force = 10.0
@@ -15,3 +17,8 @@ max_force = 10.0
 shape = SubResource("SphereShape3D_86l0o")
 
 [node name="HumanModel" parent="." instance=ExtResource("2_86l0o")]
+
+[node name="Sphere" parent="HumanModel" index="0"]
+material_override = SubResource("StandardMaterial3D_cwf78")
+
+[editable path="HumanModel"]

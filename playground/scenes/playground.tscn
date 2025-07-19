@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://bt37ffho7b4ib"]
+[gd_scene load_steps=13 format=3 uid="uid://bt37ffho7b4ib"]
 
 [ext_resource type="Texture2D" uid="uid://vlt30a3se3t7" path="res://textures/black.png" id="1_q8s1k"]
 [ext_resource type="Script" uid="uid://iey56y6gj52g" path="res://scripts/camera_point.gd" id="2_mm0a5"]
 [ext_resource type="Script" uid="uid://gcktf1y5hxcn" path="res://scripts/camera.gd" id="3_o6wi6"]
 [ext_resource type="PackedScene" uid="uid://i0l73rfrm2ae" path="res://scenes/human.tscn" id="4_emj6c"]
+[ext_resource type="PackedScene" uid="uid://bsbhqfkue5wyw" path="res://scenes/robot.tscn" id="4_mrac1"]
 [ext_resource type="Script" uid="uid://d4nqjtxtvpvak" path="res://scripts/input_controller.gd" id="5_mm0a5"]
 [ext_resource type="PackedScene" uid="uid://dtlikkilw857" path="res://scenes/poop.tscn" id="6_o6wi6"]
 
@@ -25,7 +26,7 @@ albedo_color = Color(0.542318, 0.542318, 0.542318, 1)
 albedo_texture = ExtResource("1_q8s1k")
 uv1_scale = Vector3(50, 50, 50)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m8u5f"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2q4k0"]
 albedo_color = Color(1, 0, 1, 1)
 
 [node name="Playground" type="Node3D"]
@@ -52,13 +53,10 @@ script = ExtResource("3_o6wi6")
 
 [node name="Humans" type="Node3D" parent="."]
 
-[node name="Human1Robot" parent="Humans" instance=ExtResource("4_emj6c")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.34846, 0)
-wander_type = 1
-timer_refresh_rate = 10.0
+[node name="Robot" parent="Humans" instance=ExtResource("4_mrac1")]
 
-[node name="Sphere" parent="Humans/Human1Robot/HumanModel" index="0"]
-material_override = SubResource("StandardMaterial3D_m8u5f")
+[node name="Sphere" parent="Humans/Robot/RobotModel" index="0"]
+material_override = SubResource("StandardMaterial3D_2q4k0")
 
 [node name="Human2" parent="Humans" instance=ExtResource("4_emj6c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.34846, 0)
@@ -125,5 +123,5 @@ camera = NodePath("../CameraPoint/Camera3D")
 poops = NodePath("../Poops")
 poop_scene = ExtResource("6_o6wi6")
 
-[editable path="Humans/Human1Robot"]
-[editable path="Humans/Human1Robot/HumanModel"]
+[editable path="Humans/Robot"]
+[editable path="Humans/Robot/RobotModel"]

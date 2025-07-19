@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://bsbhqfkue5wyw"]
+
+[ext_resource type="Script" uid="uid://dboyksd14i5av" path="res://scripts/robot.gd" id="1_ykvnc"]
+[ext_resource type="PackedScene" uid="uid://c5wguet7g4yes" path="res://assets/Human.glb" id="2_i42o3"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_86l0o"]
+radius = 0.831726
+
+[node name="Robot" type="CharacterBody3D" groups=["robot"]]
+script = ExtResource("1_ykvnc")
+mob_speed = 20.0
+max_force = 10.0
+
+[node name="RobotCollision" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_86l0o")
+
+[node name="RobotModel" parent="." instance=ExtResource("2_i42o3")]

@@ -20,6 +20,11 @@ config/icon="res://textures/icon.svg"
 window/size/mode=3
 window/stretch/mode="canvas_items"
 
+[global_group]
+
+human=""
+robot=""
+
 [input]
 
 move_forward={
