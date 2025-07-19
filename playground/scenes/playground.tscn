@@ -1,10 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://bt37ffho7b4ib"]
+[gd_scene load_steps=11 format=3 uid="uid://bt37ffho7b4ib"]
 
 [ext_resource type="Texture2D" uid="uid://vlt30a3se3t7" path="res://textures/black.png" id="1_q8s1k"]
 [ext_resource type="Script" uid="uid://iey56y6gj52g" path="res://scripts/camera_point.gd" id="2_mm0a5"]
 [ext_resource type="Script" uid="uid://gcktf1y5hxcn" path="res://scripts/camera.gd" id="3_o6wi6"]
 [ext_resource type="PackedScene" uid="uid://i0l73rfrm2ae" path="res://scenes/human.tscn" id="4_emj6c"]
-[ext_resource type="PackedScene" uid="uid://bsbhqfkue5wyw" path="res://scenes/robot.tscn" id="4_mrac1"]
 [ext_resource type="Script" uid="uid://d4nqjtxtvpvak" path="res://scripts/input_controller.gd" id="5_mm0a5"]
 [ext_resource type="PackedScene" uid="uid://dtlikkilw857" path="res://scenes/poop.tscn" id="6_o6wi6"]
 
@@ -25,9 +24,6 @@ glow_enabled = true
 albedo_color = Color(0.542318, 0.542318, 0.542318, 1)
 albedo_texture = ExtResource("1_q8s1k")
 uv1_scale = Vector3(50, 50, 50)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2q4k0"]
-albedo_color = Color(1, 0, 1, 1)
 
 [node name="Playground" type="Node3D"]
 
@@ -52,68 +48,69 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 60, 60)
 script = ExtResource("3_o6wi6")
 
 [node name="Humans" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.84845, 0)
 
-[node name="Robot" parent="Humans" instance=ExtResource("4_mrac1")]
-
-[node name="Sphere" parent="Humans/Robot/RobotModel" index="0"]
-material_override = SubResource("StandardMaterial3D_2q4k0")
+[node name="Human1" parent="Humans" instance=ExtResource("4_emj6c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.4778, 1.34846, 0)
+wander_type = 1
+timer_refresh_rate = 2.0
 
 [node name="Human2" parent="Humans" instance=ExtResource("4_emj6c")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.34846, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29.4425, 1.34846, 0)
 
 [node name="Human3" parent="Humans" instance=ExtResource("4_emj6c")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.34846, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35.3887, 1.34846, 0)
 
 [node name="Human4" parent="Humans" instance=ExtResource("4_emj6c")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.34846, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.34846, -21.7389)
 
 [node name="Human5" parent="Humans" instance=ExtResource("4_emj6c")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.34846, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.34846, 17.8741)
 
 [node name="Human6" parent="Humans" instance=ExtResource("4_emj6c")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.34846, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.7741, 1.34846, 26.4039)
 
 [node name="Human7" parent="Humans" instance=ExtResource("4_emj6c")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.34846, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.4678, 1.34846, 13.7655)
 
 [node name="Human8" parent="Humans" instance=ExtResource("4_emj6c")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.34846, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.6951, 1.34846, -29.4001)
 
 [node name="Human9" parent="Humans" instance=ExtResource("4_emj6c")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.34846, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.7609, 1.34846, -19.6051)
 
 [node name="Human10" parent="Humans" instance=ExtResource("4_emj6c")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.34846, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.34846, 33.6367)
 
 [node name="Human11" parent="Humans" instance=ExtResource("4_emj6c")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.34846, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.8941, 1.34846, 30.3448)
 
 [node name="Human12" parent="Humans" instance=ExtResource("4_emj6c")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.34846, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.7121, 1.34846, 32.7059)
 
 [node name="Human13" parent="Humans" instance=ExtResource("4_emj6c")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.34846, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.7571, 1.34846, -30.0883)
 
 [node name="Human14" parent="Humans" instance=ExtResource("4_emj6c")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.34846, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.6223, 1.34846, -34.8651)
 
 [node name="Human15" parent="Humans" instance=ExtResource("4_emj6c")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.34846, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.792, 1.34846, 37.1713)
 
 [node name="Human16" parent="Humans" instance=ExtResource("4_emj6c")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.34846, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37.2428, 1.34846, 18.8102)
 
 [node name="Human17" parent="Humans" instance=ExtResource("4_emj6c")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.34846, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.8411, 1.34846, 16.0357)
 
 [node name="Human18" parent="Humans" instance=ExtResource("4_emj6c")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.34846, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.5198, 1.34846, -40.0655)
 
 [node name="Human19" parent="Humans" instance=ExtResource("4_emj6c")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.34846, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.5433, 1.34846, -17.3776)
 
 [node name="Human20" parent="Humans" instance=ExtResource("4_emj6c")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.34846, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.6495, 1.34846, 8.3383)
 
 [node name="Poops" type="Node3D" parent="."]
 
@@ -122,6 +119,3 @@ script = ExtResource("5_mm0a5")
 camera = NodePath("../CameraPoint/Camera3D")
 poops = NodePath("../Poops")
 poop_scene = ExtResource("6_o6wi6")
-
-[editable path="Humans/Robot"]
-[editable path="Humans/Robot/RobotModel"]

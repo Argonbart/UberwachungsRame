@@ -2,6 +2,7 @@ extends CharacterBody3D
 
 
 # exports
+@export var debug_on: bool = false
 @export var mob_speed: float = 4.0
 @export var max_force: float = 0.4
 @export var timer_refresh_rate: float = 0.5  # seconds
@@ -17,6 +18,11 @@ var timer: Timer
 
 
 func _ready():
+	
+	if debug_on:
+		var pink_material = StandardMaterial3D.new()
+		pink_material.albedo_color = Color.RED
+		find_child("NPC").get_child(0).get_child(0).get_child(1).material_override = pink_material
 	
 	# create refresh timer
 	timer = Timer.new()
@@ -68,14 +74,12 @@ func seek(target: Vector3) -> Vector3:
 
 
 func wander_robot() -> Vector3:
-	
 	var target_distance = target_position - global_transform.origin
 	target_distance.y = 0  # Flatten to X-Z plane
 	if target_distance.length() < 1.0:
 		refresh_direction()
 		timer.start()
 		return Vector3.ZERO
-	
 	return seek(target_position)
 
 
@@ -83,7 +87,7 @@ func refresh_direction():
 	var new_target = get_random_nav_point()
 	while (new_target - global_transform.origin).length() < 20.0:
 		new_target = get_random_nav_point()
-	target_position.y = 0.0
+	new_target.y = 0.0
 	target_position = new_target
 
 
