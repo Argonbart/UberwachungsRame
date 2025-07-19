@@ -1,3 +1,4 @@
+class_name Human
 extends CharacterBody3D
 
 
@@ -158,7 +159,7 @@ func set_color(color: Color):
 func clicked():
 	
 	if wander_type == WanderType.ROBOT:
-		print("YOU WON!")
+		Globals.robot_found.emit()
 		queue_free()
 	else:
 		mob_speed *= 3.0

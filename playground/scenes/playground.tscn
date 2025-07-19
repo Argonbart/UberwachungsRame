@@ -59,6 +59,8 @@ timer_refresh_rate = 2.0
 
 [node name="Human2" parent="Humans" instance=ExtResource("4_emj6c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29.4425, 1.34846, 0)
+wander_type = 1
+timer_refresh_rate = 1.0
 
 [node name="Human3" parent="Humans" instance=ExtResource("4_emj6c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35.3887, 1.34846, 0)
@@ -123,8 +125,9 @@ poops = NodePath("../Poops")
 poop_controller = NodePath("../PoopController")
 poop_scene = ExtResource("6_o6wi6")
 
-[node name="PoopController" type="Node" parent="." node_paths=PackedStringArray("ui")]
+[node name="PoopController" type="Node" parent="." node_paths=PackedStringArray("ui", "humans")]
 script = ExtResource("7_mrac1")
 ui = NodePath("../UI")
+humans = NodePath("../Humans")
 
 [node name="UI" parent="." instance=ExtResource("7_emj6c")]
