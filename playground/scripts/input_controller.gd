@@ -1,8 +1,10 @@
 extends Node
 
+
 @export var camera: Camera3D  # Assign this in the Inspector
 @export var poops: Node3D
 @export var poop_scene: PackedScene
+
 
 func _input(event):
 	if event is InputEventMouseButton and event.pressed and event.button_index == 1:  # Left click
@@ -15,11 +17,6 @@ func _input(event):
 			var t = -ray_origin.y / ray_dir.y
 			if t > 0:
 				var hit_point = ray_origin + ray_dir * t
-				print("Hit XZ-plane at: ", hit_point)
 				var new_poop = poop_scene.instantiate()
 				new_poop.position = hit_point
 				poops.call_deferred("add_child", new_poop)
-			else:
-				print("Ray points away from the XZ-plane.")
-		else:
-			print("Ray is parallel to the XZ-plane.")

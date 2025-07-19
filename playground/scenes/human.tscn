@@ -7,7 +7,6 @@
 radius = 0.831726
 
 [node name="Human" type="CharacterBody3D" groups=["human"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.86839, 0)
 script = ExtResource("1_11jcu")
 mob_speed = 20.0
 max_force = 10.0

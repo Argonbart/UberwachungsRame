@@ -1,42 +1,37 @@
-[gd_scene load_steps=2 format=3 uid="uid://16jxw4ngjtvq"]
+[gd_scene load_steps=2 format=3 uid="uid://drvlvg0q4ubgb"]
 
-[ext_resource type="Theme" uid="uid://b3b2tit58isnh" path="res://fonts/ui.tres" id="1_nt7q6"]
+[ext_resource type="Theme" uid="uid://b3b2tit58isnh" path="res://fonts/ui.tres" id="1_v2lfg"]
 
-[node name="Control" type="Control"]
+[node name="UI" type="CanvasLayer"]
+
+[node name="Control" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("1_nt7q6")
+theme = ExtResource("1_v2lfg")
 
-[node name="Vbox" type="VBoxContainer" parent="."]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_bottom = 34.0
-grow_horizontal = 2
-theme = ExtResource("1_nt7q6")
-alignment = 1
-
-[node name="MarginContainer" type="MarginContainer" parent="Vbox"]
+[node name="TopText" type="MarginContainer" parent="Control"]
 layout_mode = 2
+offset_right = 1152.0
+offset_bottom = 44.0
 theme_override_constants/margin_left = 25
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 25
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Vbox/MarginContainer"]
+[node name="Instruction" type="RichTextLabel" parent="Control/TopText"]
 layout_mode = 2
 text = "Finde den Roboter!"
 fit_content = true
 horizontal_alignment = 1
 
-[node name="RoboterCounter" type="RichTextLabel" parent="Vbox/MarginContainer"]
+[node name="RoboterCounter" type="RichTextLabel" parent="Control/TopText"]
 layout_mode = 2
 text = "Roboter 1/1"
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="KotCounterContainer" type="MarginContainer" parent="Control"]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
@@ -46,7 +41,7 @@ offset_right = 226.0
 grow_vertical = 0
 theme_override_constants/margin_left = 25
 
-[node name="KotCounter" type="RichTextLabel" parent="MarginContainer"]
+[node name="KotCounter" type="RichTextLabel" parent="Control/KotCounterContainer"]
 layout_mode = 2
 text = "Kot 4/4"
 fit_content = true
