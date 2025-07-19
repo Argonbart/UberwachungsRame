@@ -19,12 +19,17 @@ func _input(event):
 		var end = ray_origin + camera.project_ray_normal(mouse_pos) * RAY_LENGTH
 		var query = PhysicsRayQueryParameters3D.create(ray_origin, end)
 		query.collide_with_areas = true
-		var result = space_state.intersect_ray(query)
 		
-		if result:
+		var result = space_state.intersect_ray(query)
+		var excluded = []
+		while result:
 			var clicked_item = result["collider"]
 			if clicked_item.get_groups().has("clickable"):
 				clicked_item.get_parent().clicked()
+				break
+			excluded.append(clicked_item.get_rid())
+			query.exclude = excluded
+			result = space_state.intersect_ray(query)
 		
 		# Check if ray hits the XZ-plane (where y == 0)
 		if ray_dir.y != 0.0:
