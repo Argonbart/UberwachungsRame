@@ -153,4 +153,14 @@ func set_color(color: Color):
 	find_child("NPC").get_child(0).get_child(0).get_child(3).material_override = color_material
 	find_child("NPC").get_child(0).get_child(0).get_child(4).material_override = color_material
 	find_child("NPC").get_child(0).get_child(0).get_child(5).material_override = color_material
+
+
+func clicked():
 	
+	if wander_type == WanderType.ROBOT:
+		print("YOU WON!")
+		queue_free()
+	else:
+		mob_speed *= 3.0
+		await get_tree().create_timer(1.0).timeout
+		mob_speed /= 3.0

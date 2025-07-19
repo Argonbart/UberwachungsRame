@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bt37ffho7b4ib"]
+[gd_scene load_steps=13 format=3 uid="uid://bt37ffho7b4ib"]
 
 [ext_resource type="Texture2D" uid="uid://vlt30a3se3t7" path="res://textures/black.png" id="1_q8s1k"]
 [ext_resource type="Script" uid="uid://iey56y6gj52g" path="res://scripts/camera_point.gd" id="2_mm0a5"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://d4nqjtxtvpvak" path="res://scripts/input_controller.gd" id="5_mm0a5"]
 [ext_resource type="PackedScene" uid="uid://dtlikkilw857" path="res://scenes/poop.tscn" id="6_o6wi6"]
 [ext_resource type="PackedScene" uid="uid://drvlvg0q4ubgb" path="res://scenes/ui.tscn" id="7_emj6c"]
+[ext_resource type="Script" uid="uid://b3tsqth6wnv8" path="res://scripts/poop_controller.gd" id="7_mrac1"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_rupst"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -115,10 +116,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.6495, 1.34846, 8.3383)
 
 [node name="Poops" type="Node3D" parent="."]
 
-[node name="InputController" type="Node" parent="." node_paths=PackedStringArray("camera", "poops")]
+[node name="InputController" type="Node3D" parent="." node_paths=PackedStringArray("camera", "poops", "poop_controller")]
 script = ExtResource("5_mm0a5")
 camera = NodePath("../CameraPoint/Camera3D")
 poops = NodePath("../Poops")
+poop_controller = NodePath("../PoopController")
 poop_scene = ExtResource("6_o6wi6")
+
+[node name="PoopController" type="Node" parent="." node_paths=PackedStringArray("ui")]
+script = ExtResource("7_mrac1")
+ui = NodePath("../UI")
 
 [node name="UI" parent="." instance=ExtResource("7_emj6c")]

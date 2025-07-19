@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://cvpgeuhslyygj" path="res://assets/NPC.glb" id="2_cwf78"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_86l0o"]
-radius = 0.831726
+radius = 7.87009
 
 [node name="Human" type="CharacterBody3D" groups=["human"]]
 script = ExtResource("1_11jcu")
