@@ -157,7 +157,6 @@ func set_color(color: Color):
 
 
 func clicked():
-	
 	if wander_type == WanderType.ROBOT:
 		Globals.robot_found.emit()
 		queue_free()

@@ -23,8 +23,8 @@ func _input(event):
 		
 		if result:
 			var clicked_item = result["collider"]
-			if clicked_item.get_groups().has("human"):
-				clicked_item.clicked()
+			if clicked_item.get_groups().has("clickable"):
+				clicked_item.get_parent().clicked()
 		
 		# Check if ray hits the XZ-plane (where y == 0)
 		if ray_dir.y != 0.0:

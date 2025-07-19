@@ -27,6 +27,7 @@ window/stretch/mode="canvas_items"
 
 human=""
 robot=""
+clickable=""
 
 [input]
 
