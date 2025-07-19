@@ -1,9 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://bt37ffho7b4ib"]
+[gd_scene load_steps=12 format=3 uid="uid://bt37ffho7b4ib"]
 
-[ext_resource type="Texture2D" uid="uid://vlt30a3se3t7" path="res://textures/black.png" id="1_m8u5f"]
-[ext_resource type="Script" uid="uid://iey56y6gj52g" path="res://camera_point.gd" id="2_is3ju"]
-[ext_resource type="PackedScene" uid="uid://i0l73rfrm2ae" path="res://human.tscn" id="2_wt17y"]
-[ext_resource type="Script" uid="uid://gcktf1y5hxcn" path="res://camera.gd" id="3_m8u5f"]
+[ext_resource type="Texture2D" uid="uid://vlt30a3se3t7" path="res://textures/black.png" id="1_q8s1k"]
+[ext_resource type="Script" uid="uid://iey56y6gj52g" path="res://scripts/camera_point.gd" id="2_mm0a5"]
+[ext_resource type="Script" uid="uid://gcktf1y5hxcn" path="res://scripts/camera.gd" id="3_o6wi6"]
+[ext_resource type="PackedScene" uid="uid://i0l73rfrm2ae" path="res://scenes/human.tscn" id="4_emj6c"]
+[ext_resource type="Script" uid="uid://d4nqjtxtvpvak" path="res://scripts/input_controller.gd" id="5_mm0a5"]
+[ext_resource type="PackedScene" uid="uid://dtlikkilw857" path="res://scenes/poop.tscn" id="6_o6wi6"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_rupst"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -20,7 +22,7 @@ glow_enabled = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wt17y"]
 albedo_color = Color(0.542318, 0.542318, 0.542318, 1)
-albedo_texture = ExtResource("1_m8u5f")
+albedo_texture = ExtResource("1_q8s1k")
 uv1_scale = Vector3(50, 50, 50)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m8u5f"]
@@ -41,79 +43,87 @@ size = Vector3(100, 1, 100)
 material = SubResource("StandardMaterial3D_wt17y")
 
 [node name="CameraPoint" type="Node3D" parent="."]
-script = ExtResource("2_is3ju")
+script = ExtResource("2_mm0a5")
 orbit_speed_deg = 5.0
 
 [node name="Camera3D" type="Camera3D" parent="CameraPoint"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 60, 60)
-script = ExtResource("3_m8u5f")
+script = ExtResource("3_o6wi6")
 
 [node name="Humans" type="Node3D" parent="."]
 
-[node name="Human1" parent="Humans" instance=ExtResource("2_wt17y")]
+[node name="Human1Robot" parent="Humans" instance=ExtResource("4_emj6c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.34846, 0)
 wander_type = 1
 timer_refresh_rate = 10.0
 
-[node name="Sphere" parent="Humans/Human1/HumanModel" index="0"]
+[node name="Sphere" parent="Humans/Human1Robot/HumanModel" index="0"]
 material_override = SubResource("StandardMaterial3D_m8u5f")
 
-[node name="Human2" parent="Humans" instance=ExtResource("2_wt17y")]
+[node name="Human2" parent="Humans" instance=ExtResource("4_emj6c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.34846, 0)
 
-[node name="Human3" parent="Humans" instance=ExtResource("2_wt17y")]
+[node name="Human3" parent="Humans" instance=ExtResource("4_emj6c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.34846, 0)
 
-[node name="Human4" parent="Humans" instance=ExtResource("2_wt17y")]
+[node name="Human4" parent="Humans" instance=ExtResource("4_emj6c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.34846, 0)
 
-[node name="Human5" parent="Humans" instance=ExtResource("2_wt17y")]
+[node name="Human5" parent="Humans" instance=ExtResource("4_emj6c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.34846, 0)
 
-[node name="Human6" parent="Humans" instance=ExtResource("2_wt17y")]
+[node name="Human6" parent="Humans" instance=ExtResource("4_emj6c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.34846, 0)
 
-[node name="Human7" parent="Humans" instance=ExtResource("2_wt17y")]
+[node name="Human7" parent="Humans" instance=ExtResource("4_emj6c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.34846, 0)
 
-[node name="Human8" parent="Humans" instance=ExtResource("2_wt17y")]
+[node name="Human8" parent="Humans" instance=ExtResource("4_emj6c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.34846, 0)
 
-[node name="Human9" parent="Humans" instance=ExtResource("2_wt17y")]
+[node name="Human9" parent="Humans" instance=ExtResource("4_emj6c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.34846, 0)
 
-[node name="Human10" parent="Humans" instance=ExtResource("2_wt17y")]
+[node name="Human10" parent="Humans" instance=ExtResource("4_emj6c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.34846, 0)
 
-[node name="Human11" parent="Humans" instance=ExtResource("2_wt17y")]
+[node name="Human11" parent="Humans" instance=ExtResource("4_emj6c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.34846, 0)
 
-[node name="Human12" parent="Humans" instance=ExtResource("2_wt17y")]
+[node name="Human12" parent="Humans" instance=ExtResource("4_emj6c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.34846, 0)
 
-[node name="Human13" parent="Humans" instance=ExtResource("2_wt17y")]
+[node name="Human13" parent="Humans" instance=ExtResource("4_emj6c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.34846, 0)
 
-[node name="Human14" parent="Humans" instance=ExtResource("2_wt17y")]
+[node name="Human14" parent="Humans" instance=ExtResource("4_emj6c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.34846, 0)
 
-[node name="Human15" parent="Humans" instance=ExtResource("2_wt17y")]
+[node name="Human15" parent="Humans" instance=ExtResource("4_emj6c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.34846, 0)
 
-[node name="Human16" parent="Humans" instance=ExtResource("2_wt17y")]
+[node name="Human16" parent="Humans" instance=ExtResource("4_emj6c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.34846, 0)
 
-[node name="Human17" parent="Humans" instance=ExtResource("2_wt17y")]
+[node name="Human17" parent="Humans" instance=ExtResource("4_emj6c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.34846, 0)
 
-[node name="Human18" parent="Humans" instance=ExtResource("2_wt17y")]
+[node name="Human18" parent="Humans" instance=ExtResource("4_emj6c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.34846, 0)
 
-[node name="Human19" parent="Humans" instance=ExtResource("2_wt17y")]
+[node name="Human19" parent="Humans" instance=ExtResource("4_emj6c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.34846, 0)
 
-[node name="Human20" parent="Humans" instance=ExtResource("2_wt17y")]
+[node name="Human20" parent="Humans" instance=ExtResource("4_emj6c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.34846, 0)
 
-[editable path="Humans/Human1"]
-[editable path="Humans/Human1/HumanModel"]
+[node name="Poops" type="Node3D" parent="."]
+
+[node name="InputController" type="Node" parent="." node_paths=PackedStringArray("camera", "poops")]
+script = ExtResource("5_mm0a5")
+camera = NodePath("../CameraPoint/Camera3D")
+poops = NodePath("../Poops")
+poop_scene = ExtResource("6_o6wi6")
+
+[editable path="Humans/Human1Robot"]
+[editable path="Humans/Human1Robot/HumanModel"]

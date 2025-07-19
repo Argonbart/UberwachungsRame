@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://dtlikkilw857"]
+
+[ext_resource type="PackedScene" uid="uid://cpsjad7jrd0go" path="res://assets/Poop.glb" id="1_634gh"]
+
+[node name="Poop" type="Node3D"]
+
+[node name="Poop" parent="." instance=ExtResource("1_634gh")]

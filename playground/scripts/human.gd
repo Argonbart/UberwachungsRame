@@ -42,7 +42,7 @@ func _physics_process(delta):
 	
 	# check wander type
 	if wander_type == WanderType.ROBOT:
-		acceleration = wander_robot(delta)
+		acceleration = wander_robot()
 	else:
 		acceleration = wander_human()
 	
@@ -81,7 +81,7 @@ func seek(target: Vector3) -> Vector3:
 	return steer
 
 
-func wander_robot(delta: float) -> Vector3:
+func wander_robot() -> Vector3:
 	
 	var target_distance = target_position - global_transform.origin
 	target_distance.y = 0  # Flatten to X-Z plane
