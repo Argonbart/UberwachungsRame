@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bt37ffho7b4ib"]
+[gd_scene load_steps=12 format=3 uid="uid://bt37ffho7b4ib"]
 
 [ext_resource type="Texture2D" uid="uid://vlt30a3se3t7" path="res://textures/black.png" id="1_q8s1k"]
 [ext_resource type="Script" uid="uid://iey56y6gj52g" path="res://scripts/camera_point.gd" id="2_mm0a5"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://i0l73rfrm2ae" path="res://scenes/human.tscn" id="4_emj6c"]
 [ext_resource type="Script" uid="uid://d4nqjtxtvpvak" path="res://scripts/input_controller.gd" id="5_mm0a5"]
 [ext_resource type="PackedScene" uid="uid://dtlikkilw857" path="res://scenes/poop.tscn" id="6_o6wi6"]
+[ext_resource type="PackedScene" uid="uid://16jxw4ngjtvq" path="res://scenes/ui.tscn" id="7_emj6c"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_rupst"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -119,3 +120,7 @@ script = ExtResource("5_mm0a5")
 camera = NodePath("../CameraPoint/Camera3D")
 poops = NodePath("../Poops")
 poop_scene = ExtResource("6_o6wi6")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" parent="CanvasLayer" instance=ExtResource("7_emj6c")]
