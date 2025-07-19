@@ -22,13 +22,19 @@ alignment = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="Vbox"]
 layout_mode = 2
-theme_override_constants/margin_top = 10
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 25
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Vbox/MarginContainer"]
 layout_mode = 2
 text = "Finde den Roboter!"
 fit_content = true
 horizontal_alignment = 1
+
+[node name="RoboterCounter" type="RichTextLabel" parent="Vbox/MarginContainer"]
+layout_mode = 2
+text = "Roboter 1/1"
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -40,7 +46,7 @@ offset_right = 226.0
 grow_vertical = 0
 theme_override_constants/margin_left = 25
 
-[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer"]
+[node name="KotCounter" type="RichTextLabel" parent="MarginContainer"]
 layout_mode = 2
 text = "Kot 4/4"
 fit_content = true
