@@ -15,6 +15,11 @@ run/main_scene="uid://bt37ffho7b4ib"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
+[display]
+
+window/size/mode=3
+window/stretch/mode="canvas_items"
+
 [input]
 
 move_forward={
