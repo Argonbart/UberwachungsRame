@@ -18,6 +18,7 @@ func _input(event):
 		# cleared level
 		if level1_finished:
 			SceneSwitcher.switch_scene(SceneSwitcher.Scene.LEVEL2)
+			Globals.shuffle_colors()
 			return
 		
 		# failed level

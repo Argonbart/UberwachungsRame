@@ -12,7 +12,7 @@ var scene_paths = {
 	Scene.MENU: "res://content/on_start/scenes/startscreen.tscn",
 	Scene.LEVEL1: "res://content/level1/level1.tscn",
 	Scene.LEVEL2: "res://content/level2/level2.tscn",
-	Scene.END: "res://content/general/scenes/winscreen.tscn",
+	Scene.END: "res://content/on_end/scenes/winscreen.tscn",
 }
 
 var current_scene = null

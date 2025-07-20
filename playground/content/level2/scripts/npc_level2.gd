@@ -41,9 +41,6 @@ var next_target_idx: int = 0
 
 func _ready():
 	
-	# randomize colors
-	Globals.shuffle_colors()
-	
 	# randomize npc speed
 	npc_speed = npc_speed * randf_range(0.5, 2.0)
 	
@@ -160,7 +157,7 @@ func set_color_path(color: Color):
 	# set random todos if robot
 	if npc_type == NPCType.ROBOT:
 		var todos_color_random: Array[AreaType] = []
-		for i in range(10):
+		for i in range(100):
 			todos_color_random.append(randi_range(0, AreaType.size()-1))
 		target_position = get_next_color_point(todos_color_random[next_target_idx])
 		todos = todos_color_random

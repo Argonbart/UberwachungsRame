@@ -27,6 +27,7 @@ func _input(event):
 		# failed level
 		if level2_lost:
 			SceneSwitcher.switch_scene(SceneSwitcher.Scene.LEVEL2)
+			Globals.shuffle_colors()
 			return
 		
 		# click npc
