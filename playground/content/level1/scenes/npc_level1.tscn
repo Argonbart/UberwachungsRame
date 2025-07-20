@@ -12,12 +12,6 @@ height = 12.934
 
 [node name="NPC" type="CharacterBody3D" groups=["npc"]]
 script = ExtResource("1_11jcu")
-human_speed = 20.0
-human_max_force = 10.0
-robot_speed = 20.0
-robot_max_force = 10.0
-robot_timer_refresh_rate = 2.0
-colors = Array[Color]([Color(1, 0, 0, 1), Color(0, 1, 0, 1), Color(0, 0, 1, 1), Color(1, 0, 1, 1), Color(1, 1, 0, 1)])
 
 [node name="NPCCollision" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_86l0o")
