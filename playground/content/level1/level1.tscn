@@ -72,9 +72,9 @@ ui = NodePath("../UI")
 poops = NodePath("../Poops")
 poop_scene = ExtResource("6_lgguw")
 
-[node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("ui", "humans")]
+[node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("ui", "npcs")]
 script = ExtResource("8_plydf")
 ui = NodePath("../UI")
-humans = NodePath("../NPCs")
+npcs = NodePath("../NPCs")
 
 [node name="UI" parent="." instance=ExtResource("8_ps2vj")]

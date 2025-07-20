@@ -2,7 +2,7 @@ extends Node
 
 
 @export var ui: CanvasLayer
-@export var humans: Node3D
+@export var npcs: Node3D
 
 var robot_counter: int
 var max_robot_count: int = 0
@@ -11,8 +11,9 @@ var max_robot_count: int = 0
 func _ready():
 	
 	# set robot vars
-	for human in humans.get_children():
-		if human.npc_type == NPC.NPCType.ROBOT:
+	await get_tree().process_frame
+	for npc in npcs.get_children():
+		if npc.npc_type == NPC.NPCType.ROBOT:
 			max_robot_count += 1
 	robot_counter = max_robot_count
 	ui.get_child(0).get_child(0).get_child(1).text = str("Roboter ", robot_counter, "/", max_robot_count)

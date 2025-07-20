@@ -85,9 +85,9 @@ area_color = Color(20, 0, 20, 1)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30, 0, 30)
 area_color = Color(0, 20, 20, 1)
 
-[node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("ui", "humans")]
+[node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("ui", "npcs")]
 script = ExtResource("7_lb35n")
 ui = NodePath("../UI")
-humans = NodePath("../NPCs")
+npcs = NodePath("../NPCs")
 
 [node name="UI" parent="." instance=ExtResource("8_ni16p")]

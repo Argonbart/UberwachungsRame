@@ -22,7 +22,6 @@ SceneSwitcher="*res://content/on_start/scripts/scene_switcher.gd"
 
 [display]
 
-window/size/mode=4
 window/stretch/mode="canvas_items"
 
 [global_group]
