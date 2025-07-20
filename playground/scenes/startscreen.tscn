@@ -1,9 +1,11 @@
-[gd_scene load_steps=153 format=3 uid="uid://d4g85ms722734"]
+[gd_scene load_steps=155 format=3 uid="uid://d4g85ms722734"]
 
 [ext_resource type="Theme" uid="uid://b3b2tit58isnh" path="res://fonts/ui.tres" id="1_pmter"]
 [ext_resource type="Texture2D" uid="uid://bmm01kk7c06ro" path="res://images/intro/frame_000_delay-0.03s.png" id="1_pn48f"]
+[ext_resource type="Script" uid="uid://pqgavmu6d412" path="res://scripts/startbutton.gd" id="2_asafo"]
 [ext_resource type="Texture2D" uid="uid://c5gmx2qs404ru" path="res://images/intro/frame_001_delay-0.04s.png" id="2_pmter"]
 [ext_resource type="Texture2D" uid="uid://xs0ubj2a3s4m" path="res://images/intro/frame_003_delay-0.03s.png" id="3_asafo"]
+[ext_resource type="Script" uid="uid://crysfv1pu5aej" path="res://scripts/stop_button.gd" id="3_kjihi"]
 [ext_resource type="Texture2D" uid="uid://b7bfbr3mkg1op" path="res://images/intro/frame_004_delay-0.04s.png" id="4_kjihi"]
 [ext_resource type="Texture2D" uid="uid://dd8qcudaqniis" path="res://images/intro/frame_005_delay-0.03s.png" id="5_kc881"]
 [ext_resource type="Texture2D" uid="uid://xhlw7jwhum3" path="res://images/intro/frame_006_delay-0.03s.png" id="6_wkp1v"]
@@ -643,15 +645,17 @@ grow_horizontal = 2
 grow_vertical = 0
 theme = ExtResource("1_pmter")
 
-[node name="Button" type="Button" parent="VBoxContainer"]
+[node name="StartButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 text = "Start Game"
 flat = true
+script = ExtResource("2_asafo")
 
-[node name="Button2" type="Button" parent="VBoxContainer"]
+[node name="StopButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 text = "Exit Game"
 flat = true
+script = ExtResource("3_kjihi")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 z_index = 1
@@ -661,3 +665,6 @@ sprite_frames = SubResource("SpriteFrames_5k57b")
 autoplay = "default"
 frame = 149
 frame_progress = 1.0
+
+[connection signal="pressed" from="VBoxContainer/StartButton" to="VBoxContainer/StartButton" method="_on_pressed"]
+[connection signal="pressed" from="VBoxContainer/StopButton" to="VBoxContainer/StopButton" method="_on_pressed"]

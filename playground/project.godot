@@ -11,13 +11,14 @@ config_version=5
 [application]
 
 config/name="Playground"
-run/main_scene="uid://bt37ffho7b4ib"
+run/main_scene="uid://djet7caivp7ux"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://textures/icon.svg"
 
 [autoload]
 
 Globals="*res://scripts/globals.gd"
+SceneSwitcher="*res://scripts/scene_switcher.gd"
 
 [display]
 
