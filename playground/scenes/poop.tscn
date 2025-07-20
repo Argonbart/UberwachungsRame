@@ -9,12 +9,12 @@ radius = 20.4353
 [node name="Poop" type="Node3D"]
 script = ExtResource("1_pkbnx")
 
-[node name="Poop" parent="." instance=ExtResource("1_634gh")]
+[node name="PoopModel" parent="." instance=ExtResource("1_634gh")]
 
-[node name="PoopArea" type="Area3D" parent="."]
+[node name="PoopEffectArea" type="Area3D" parent="."]
 
-[node name="PoopAreaCollision" type="CollisionShape3D" parent="PoopArea"]
+[node name="PoopEffectAreaCollision" type="CollisionShape3D" parent="PoopEffectArea"]
 shape = SubResource("SphereShape3D_634gh")
 
-[connection signal="body_entered" from="PoopArea" to="." method="_on_poop_area_body_entered"]
-[connection signal="body_exited" from="PoopArea" to="." method="_on_poop_area_body_exited"]
+[connection signal="body_entered" from="PoopEffectArea" to="." method="_on_poop_area_body_entered"]
+[connection signal="body_exited" from="PoopEffectArea" to="." method="_on_poop_area_body_exited"]
