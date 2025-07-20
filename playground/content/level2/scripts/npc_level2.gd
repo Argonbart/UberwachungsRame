@@ -39,9 +39,6 @@ func _ready():
 	# randomize npc speed
 	npc_speed = npc_speed * randf_range(0.5, 2.0)
 	
-	# take todos from parents
-	todos = get_parent().todos
-	
 	# create refresh timer
 	timer = Timer.new()
 	timer.wait_time = npc_timer_refresh_rate
@@ -50,11 +47,11 @@ func _ready():
 	self.add_child(timer)
 	
 	# set random color
-	var random_color = Globals.colors[randi_range(0, Globals.colors.size()-1)]
-	set_color(random_color)
-	
-	# set initial values
-	set_color_path()
+	#var random_color = Globals.colors[randi_range(0, Globals.colors.size()-1)]
+	#set_color(random_color)
+	#
+	## set initial values
+	#set_color_path()
 	velocity = Vector3.FORWARD.rotated(Vector3.UP, randf_range(0, TAU)) * npc_speed
 	
 	# connect signals
@@ -150,7 +147,7 @@ func set_color(color: Color):
 
 
 # set first target
-func set_color_path():
+func set_color_path(given_todos):
 	
 	# set random todos if robot
 	if npc_type == NPCType.ROBOT:
@@ -160,10 +157,12 @@ func set_color_path():
 		target_position = get_next_color_point(todos_color_random[next_target_idx])
 		todos = todos_color_random
 		next_target_idx = posmod((next_target_idx + 1), todos.size())
-		return
-	
-	# set first target randomly
-	next_target_idx = randi_range(0, todos.size()-1)
+	else:
+		# take todos from spawner
+		todos = given_todos
+		
+		# set first target randomly
+		next_target_idx = randi_range(0, todos.size()-1)
 
 
 # npc clicked

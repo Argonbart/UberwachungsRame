@@ -5,8 +5,8 @@
 [ext_resource type="Script" uid="uid://gcktf1y5hxcn" path="res://content/all_levels/scripts/camera.gd" id="3_7vi56"]
 [ext_resource type="PackedScene" uid="uid://drn33aesttggx" path="res://content/all_levels/scenes/spawner.tscn" id="4_teput"]
 [ext_resource type="PackedScene" uid="uid://dxnbp7vkw05af" path="res://content/level2/scenes/npc_level2.tscn" id="4_ulpgp"]
+[ext_resource type="Script" uid="uid://co8xyxfkrrdph" path="res://content/level2/scripts/spawner_level2.gd" id="5_jn7us"]
 [ext_resource type="Script" uid="uid://b4ai2b03dfk2" path="res://content/level2/scripts/input_controller_level2.gd" id="5_vx34r"]
-[ext_resource type="Script" uid="uid://b4uei4tohduxs" path="res://content/level2/scripts/npcs_node_level2.gd" id="6_jn7us"]
 [ext_resource type="PackedScene" uid="uid://dmax8518mdl2m" path="res://content/all_levels/scenes/color_area.tscn" id="7_upjud"]
 [ext_resource type="PackedScene" uid="uid://drvlvg0q4ubgb" path="res://content/all_levels/scenes/ui.tscn" id="9_i2agf"]
 [ext_resource type="Script" uid="uid://crjc66ke0oqxp" path="res://content/level2/scripts/game_manager_level2.gd" id="9_jn7us"]
@@ -52,15 +52,13 @@ orbit_speed_deg = 5.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 60, 60)
 script = ExtResource("3_7vi56")
 
-[node name="Spawner" parent="." node_paths=PackedStringArray("npc_spawn_location") instance=ExtResource("4_teput")]
-human_amount = 3
-robot_amount = 1
-npc_spawn_location = NodePath("../NPCs")
-npc_scene = ExtResource("4_ulpgp")
-
 [node name="NPCs" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.84845, 0)
-script = ExtResource("6_jn7us")
+
+[node name="Spawner" parent="." node_paths=PackedStringArray("npc_spawn_location") instance=ExtResource("4_teput")]
+script = ExtResource("5_jn7us")
+npc_spawn_location = NodePath("../NPCs")
+npc_scene = ExtResource("4_ulpgp")
 
 [node name="Poops" type="Node3D" parent="."]
 
