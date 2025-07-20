@@ -18,7 +18,7 @@ func _input(event):
 		
 		# cleared level
 		if level_finished:
-			SceneSwitcher.add_scene(SceneSwitcher.Scene.WIN)
+			SceneSwitcher.switch_scene(SceneSwitcher.Scene.MENU)
 			return
 		
 		# failed level
@@ -51,6 +51,7 @@ func _input(event):
 
 func activate_level_button():
 	level_finished = true
+	SceneSwitcher.add_scene(SceneSwitcher.Scene.WIN)
 
 
 func activate_level_repeat_button():

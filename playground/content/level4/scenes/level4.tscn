@@ -4,13 +4,13 @@
 [ext_resource type="Script" uid="uid://iey56y6gj52g" path="res://content/all_levels/scripts/camera_point.gd" id="2_psn4t"]
 [ext_resource type="Script" uid="uid://gcktf1y5hxcn" path="res://content/all_levels/scripts/camera.gd" id="3_udfxm"]
 [ext_resource type="PackedScene" uid="uid://drn33aesttggx" path="res://content/all_levels/scenes/spawner.tscn" id="4_apav3"]
-[ext_resource type="Script" uid="uid://7d5xehhkfrxs" path="res://content/level3/scripts/input_controller_level3.gd" id="5_cx8pw"]
 [ext_resource type="Script" uid="uid://bviug5e4232f1" path="res://content/level4/scripts/spawner_level4.gd" id="5_psn4t"]
 [ext_resource type="PackedScene" uid="uid://bysfc342nc40" path="res://content/level4/scenes/npc_level4.tscn" id="6_udfxm"]
 [ext_resource type="PackedScene" uid="uid://dmax8518mdl2m" path="res://content/all_levels/scenes/color_area.tscn" id="6_y3a68"]
 [ext_resource type="PackedScene" uid="uid://kke5lyb75bgs" path="res://content/level4/scenes/billy_level4.tscn" id="7_apav3"]
 [ext_resource type="Script" uid="uid://dsaxcbbj1l28s" path="res://content/all_levels/scripts/game_manager.gd" id="7_k6g24"]
 [ext_resource type="PackedScene" uid="uid://drvlvg0q4ubgb" path="res://content/all_levels/scenes/ui.tscn" id="8_4uyg5"]
+[ext_resource type="Script" uid="uid://hr3east1gvbh" path="res://content/level4/scripts/input_controller_level4.gd" id="8_apav3"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_f3b2k"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -68,7 +68,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.84845, 0)
 [node name="Poops" type="Node3D" parent="."]
 
 [node name="InputController" type="Node3D" parent="." node_paths=PackedStringArray("camera", "ui")]
-script = ExtResource("5_cx8pw")
+script = ExtResource("8_apav3")
 camera = NodePath("../CameraPoint/Camera3D")
 ui = NodePath("../UI")
 
