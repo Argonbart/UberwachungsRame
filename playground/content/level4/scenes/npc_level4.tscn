@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://bysfc342nc40"]
+
+[ext_resource type="Script" uid="uid://djjftuwoyyf2w" path="res://content/level4/scripts/npc_level4.gd" id="1_2e4m3"]
+[ext_resource type="PackedScene" uid="uid://cvpgeuhslyygj" path="res://assets/3d_models/NPC.glb" id="2_sqowm"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_86l0o"]
+radius = 1.0
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_cwf78"]
+radius = 3.50395
+height = 12.934
+
+[node name="NPC" type="CharacterBody3D" groups=["npc"]]
+script = ExtResource("1_2e4m3")
+
+[node name="NPCCollision" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_86l0o")
+disabled = true
+
+[node name="NPCClickArea" type="Area3D" parent="." groups=["clickable"]]
+
+[node name="NPCClickAreaCollision" type="CollisionShape3D" parent="NPCClickArea"]
+shape = SubResource("CapsuleShape3D_cwf78")
+
+[node name="NPCModel" parent="." instance=ExtResource("2_sqowm")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+
+[node name="AnimationPlayer" parent="NPCModel" index="1"]
+autoplay = "ArmatureAction"
+
+[connection signal="area_entered" from="NPCClickArea" to="." method="_on_npc_click_area_area_entered"]
+
+[editable path="NPCModel"]

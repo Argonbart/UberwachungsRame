@@ -13,8 +13,9 @@ func _ready():
 	# set robot vars
 	await get_tree().process_frame
 	for npc in npcs.get_children():
-		if npc.npc_type == NPC.NPCType.ROBOT:
-			max_robot_count += 1
+		if !npc.get_groups().has("billy"):
+			if npc.npc_type == NPC.NPCType.ROBOT:
+				max_robot_count += 1
 	robot_counter = max_robot_count
 	ui.get_child(0).get_child(0).get_child(1).text = str("Roboter ", robot_counter, "/", max_robot_count)
 	

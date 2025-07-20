@@ -1,0 +1,98 @@
+[gd_scene load_steps=16 format=3 uid="uid://isoduog2v0nm"]
+
+[ext_resource type="Texture2D" uid="uid://vlt30a3se3t7" path="res://assets/textures/black.png" id="1_0qkvd"]
+[ext_resource type="Script" uid="uid://iey56y6gj52g" path="res://content/all_levels/scripts/camera_point.gd" id="2_psn4t"]
+[ext_resource type="Script" uid="uid://gcktf1y5hxcn" path="res://content/all_levels/scripts/camera.gd" id="3_udfxm"]
+[ext_resource type="PackedScene" uid="uid://drn33aesttggx" path="res://content/all_levels/scenes/spawner.tscn" id="4_apav3"]
+[ext_resource type="Script" uid="uid://7d5xehhkfrxs" path="res://content/level3/scripts/input_controller_level3.gd" id="5_cx8pw"]
+[ext_resource type="Script" uid="uid://bviug5e4232f1" path="res://content/level4/scripts/spawner_level4.gd" id="5_psn4t"]
+[ext_resource type="PackedScene" uid="uid://bysfc342nc40" path="res://content/level4/scenes/npc_level4.tscn" id="6_udfxm"]
+[ext_resource type="PackedScene" uid="uid://dmax8518mdl2m" path="res://content/all_levels/scenes/color_area.tscn" id="6_y3a68"]
+[ext_resource type="PackedScene" uid="uid://kke5lyb75bgs" path="res://content/level4/scenes/billy_level4.tscn" id="7_apav3"]
+[ext_resource type="Script" uid="uid://dsaxcbbj1l28s" path="res://content/all_levels/scripts/game_manager.gd" id="7_k6g24"]
+[ext_resource type="PackedScene" uid="uid://drvlvg0q4ubgb" path="res://content/all_levels/scenes/ui.tscn" id="8_4uyg5"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_f3b2k"]
+sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+
+[sub_resource type="Sky" id="Sky_wt17y"]
+sky_material = SubResource("ProceduralSkyMaterial_f3b2k")
+
+[sub_resource type="Environment" id="Environment_sqrei"]
+background_mode = 2
+sky = SubResource("Sky_wt17y")
+tonemap_mode = 2
+glow_enabled = true
+glow_hdr_threshold = 1.5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yhrca"]
+albedo_color = Color(0.542318, 0.542318, 0.542318, 1)
+albedo_texture = ExtResource("1_0qkvd")
+uv1_scale = Vector3(50, 50, 50)
+
+[node name="Level2" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_sqrei")
+
+[node name="Light" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Ground" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.499294, 0)
+size = Vector3(100, 1, 100)
+material = SubResource("StandardMaterial3D_yhrca")
+
+[node name="CameraPoint" type="Node3D" parent="."]
+script = ExtResource("2_psn4t")
+orbit_speed_deg = 5.0
+
+[node name="Camera3D" type="Camera3D" parent="CameraPoint"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 60, 60)
+script = ExtResource("3_udfxm")
+
+[node name="Spawner" parent="." node_paths=PackedStringArray("npc_spawn_location") instance=ExtResource("4_apav3")]
+script = ExtResource("5_psn4t")
+human_amount = 10
+robot_amount = 2
+billy_amount = 1
+npc_spawn_location = NodePath("../NPCs")
+npc_scene = ExtResource("6_udfxm")
+billy_scene = ExtResource("7_apav3")
+
+[node name="NPCs" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.84845, 0)
+
+[node name="Poops" type="Node3D" parent="."]
+
+[node name="InputController" type="Node3D" parent="." node_paths=PackedStringArray("camera", "ui")]
+script = ExtResource("5_cx8pw")
+camera = NodePath("../CameraPoint/Camera3D")
+ui = NodePath("../UI")
+
+[node name="Areas" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.000480413, 0)
+
+[node name="ColorArea" parent="Areas" instance=ExtResource("6_y3a68")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30, 0, -30)
+
+[node name="ColorArea2" parent="Areas" instance=ExtResource("6_y3a68")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 0, -30)
+area_color = Color(0, 20, 0, 1)
+
+[node name="ColorArea3" parent="Areas" instance=ExtResource("6_y3a68")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 0, 30)
+area_color = Color(20, 0, 20, 1)
+
+[node name="ColorArea4" parent="Areas" instance=ExtResource("6_y3a68")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30, 0, 30)
+area_color = Color(0, 20, 20, 1)
+
+[node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("ui", "npcs")]
+script = ExtResource("7_k6g24")
+ui = NodePath("../UI")
+npcs = NodePath("../NPCs")
+
+[node name="UI" parent="." instance=ExtResource("8_4uyg5")]
