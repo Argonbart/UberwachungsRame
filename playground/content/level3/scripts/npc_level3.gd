@@ -52,11 +52,11 @@ func _ready():
 	self.add_child(timer)
 	
 	# set random color
-	var random_color = Globals.colors[randi_range(0, Globals.colors.size()-1)]
-	set_color(random_color)
+	#var random_color = Globals.colors[randi_range(0, Globals.colors.size()-3)]
+	#set_color(random_color)
 	
 	# set initial values
-	set_color_path(random_color)
+	#set_color_path(random_color)
 	velocity = Vector3.FORWARD.rotated(Vector3.UP, randf_range(0, TAU)) * npc_speed
 	
 	# connect signals

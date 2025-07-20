@@ -1,10 +1,11 @@
-[gd_scene load_steps=14 format=3 uid="uid://xl2l4o214au1"]
+[gd_scene load_steps=15 format=3 uid="uid://xl2l4o214au1"]
 
 [ext_resource type="Texture2D" uid="uid://vlt30a3se3t7" path="res://assets/textures/black.png" id="1_ulpgp"]
 [ext_resource type="Script" uid="uid://iey56y6gj52g" path="res://content/all_levels/scripts/camera_point.gd" id="2_2ajrl"]
 [ext_resource type="Script" uid="uid://gcktf1y5hxcn" path="res://content/all_levels/scripts/camera.gd" id="3_jn7us"]
 [ext_resource type="PackedScene" uid="uid://drn33aesttggx" path="res://content/all_levels/scenes/spawner.tscn" id="4_2ajrl"]
 [ext_resource type="PackedScene" uid="uid://2xnfrsu7hhc2" path="res://content/level3/scenes/npc_level3.tscn" id="4_ulpgp"]
+[ext_resource type="Script" uid="uid://bw4vliveob8p3" path="res://content/level3/scripts/spawner_level3.gd" id="5_g05ni"]
 [ext_resource type="Script" uid="uid://7d5xehhkfrxs" path="res://content/level3/scripts/input_controller_level3.gd" id="5_vx34r"]
 [ext_resource type="PackedScene" uid="uid://dmax8518mdl2m" path="res://content/all_levels/scenes/color_area.tscn" id="6_fdq07"]
 [ext_resource type="Script" uid="uid://dsaxcbbj1l28s" path="res://content/all_levels/scripts/game_manager.gd" id="7_lb35n"]
@@ -52,8 +53,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 60, 60)
 script = ExtResource("3_jn7us")
 
 [node name="Spawner" parent="." node_paths=PackedStringArray("npc_spawn_location") instance=ExtResource("4_2ajrl")]
-human_amount = 13
-robot_amount = 2
+script = ExtResource("5_g05ni")
 npc_spawn_location = NodePath("../NPCs")
 npc_scene = ExtResource("4_ulpgp")
 
