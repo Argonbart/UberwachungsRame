@@ -1,0 +1,57 @@
+[gd_scene load_steps=9 format=3 uid="uid://6kew8vqocj2"]
+
+[ext_resource type="Texture2D" uid="uid://vlt30a3se3t7" path="res://assets/textures/black.png" id="1_80a8r"]
+[ext_resource type="Script" uid="uid://iey56y6gj52g" path="res://content/all_levels/scripts/camera_point.gd" id="2_fwxjs"]
+[ext_resource type="PackedScene" uid="uid://drn33aesttggx" path="res://content/all_levels/scenes/spawner.tscn" id="4_ug5up"]
+[ext_resource type="PackedScene" uid="uid://i0l73rfrm2ae" path="res://content/level1/scenes/npc_level1.tscn" id="5_epum6"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_rupst"]
+sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+
+[sub_resource type="Sky" id="Sky_8a7m2"]
+sky_material = SubResource("ProceduralSkyMaterial_rupst")
+
+[sub_resource type="Environment" id="Environment_m8u5f"]
+background_mode = 2
+sky = SubResource("Sky_8a7m2")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wt17y"]
+albedo_color = Color(0.542318, 0.542318, 0.542318, 1)
+albedo_texture = ExtResource("1_80a8r")
+uv1_scale = Vector3(50, 50, 50)
+
+[node name="Level1" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_m8u5f")
+
+[node name="Light" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Ground" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.499294, 0)
+size = Vector3(100, 1, 100)
+material = SubResource("StandardMaterial3D_wt17y")
+
+[node name="CameraPoint" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.4385, 0, 0)
+script = ExtResource("2_fwxjs")
+orbit_speed_deg = 5.0
+
+[node name="Camera3D" type="Camera3D" parent="CameraPoint"]
+transform = Transform3D(1, 0, 0, 0, 0.745778, 0.666194, 0, -0.666194, 0.745778, -29.4223, 28.3383, 54.0463)
+
+[node name="Spawner" parent="." node_paths=PackedStringArray("npc_spawn_location") instance=ExtResource("4_ug5up")]
+human_amount = 16
+robot_amount = 4
+npc_spawn_location = NodePath("../NPCs")
+npc_scene = ExtResource("5_epum6")
+
+[node name="NPCs" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.84845, 0)
+
+[node name="Poops" type="Node3D" parent="."]

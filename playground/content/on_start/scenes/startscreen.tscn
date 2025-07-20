@@ -1,4 +1,4 @@
-[gd_scene load_steps=155 format=3 uid="uid://d4g85ms722734"]
+[gd_scene load_steps=156 format=3 uid="uid://d4g85ms722734"]
 
 [ext_resource type="Theme" uid="uid://b3b2tit58isnh" path="res://assets/fonts/ui.tres" id="1_pmter"]
 [ext_resource type="Texture2D" uid="uid://bmm01kk7c06ro" path="res://assets/intro_images/frame_000_delay-0.03s.png" id="1_pn48f"]
@@ -152,6 +152,7 @@
 [ext_resource type="Texture2D" uid="uid://j0rhbo1bxry5" path="res://assets/intro_images/frame_147_delay-0.03s.png" id="147_6hpv8"]
 [ext_resource type="Texture2D" uid="uid://4d3kfg78jv22" path="res://assets/intro_images/frame_148_delay-0.04s.png" id="148_algss"]
 [ext_resource type="Texture2D" uid="uid://bo7g1ypfe7qb5" path="res://assets/intro_images/frame_149_delay-0.04s.png" id="149_1oltv"]
+[ext_resource type="PackedScene" uid="uid://6kew8vqocj2" path="res://content/on_start/scenes/default.tscn" id="153_chugt"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_pn48f"]
 
@@ -622,26 +623,21 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Background" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(0, 400)
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
+anchors_preset = 9
 anchor_bottom = 1.0
-grow_horizontal = 2
+offset_right = 533.0
 grow_vertical = 2
 texture = SubResource("CanvasTexture_pn48f")
 
 [node name="Buttons" type="VBoxContainer" parent="."]
 layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
+anchors_preset = 2
 anchor_top = 1.0
-anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -93.0
-offset_top = -188.0
-offset_right = 93.0
-offset_bottom = -96.0
-grow_horizontal = 2
+offset_top = -203.0
+offset_right = 499.0
 grow_vertical = 0
 theme = ExtResource("1_pmter")
 
@@ -659,12 +655,14 @@ script = ExtResource("3_kjihi")
 
 [node name="BotOrNot" type="AnimatedSprite2D" parent="."]
 z_index = 1
-position = Vector2(577, 282)
+position = Vector2(264, 276)
 scale = Vector2(0.4, 0.4)
 sprite_frames = SubResource("SpriteFrames_5k57b")
 autoplay = "default"
 frame = 149
 frame_progress = 1.0
+
+[node name="Level1" parent="." instance=ExtResource("153_chugt")]
 
 [connection signal="pressed" from="Buttons/StartButton" to="Buttons/StartButton" method="_on_pressed"]
 [connection signal="pressed" from="Buttons/ExitButton" to="Buttons/ExitButton" method="_on_pressed"]
