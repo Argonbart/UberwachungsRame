@@ -18,6 +18,7 @@ func _ready():
 	ui.get_child(0).get_child(0).get_child(1).text = str("Roboter ", robot_counter, "/", max_robot_count)
 	
 	# set guesses
+	Globals.guesses = Globals.MAX_GUESSES
 	ui.get_child(0).get_child(0).get_child(2).text = str("Guesses Left: ", Globals.guesses)
 	
 	# connect signals

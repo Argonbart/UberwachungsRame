@@ -1,0 +1,24 @@
+[gd_scene load_steps=2 format=3 uid="uid://8qbfhg8lgnc4"]
+
+[ext_resource type="FontFile" uid="uid://ckjblxqy337we" path="res://fonts/GlitchGoblin-2O87v.ttf" id="1_bprd4"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="WinText" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("1_bprd4")
+theme_override_font_sizes/normal_font_size = 100
+text = "Du bist echt Baba!"
+horizontal_alignment = 1
+vertical_alignment = 1

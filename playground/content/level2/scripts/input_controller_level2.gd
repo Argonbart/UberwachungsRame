@@ -2,12 +2,36 @@ extends Node3D
 
 
 const RAY_LENGTH = 1000
+const LEVEL2_SCENE_PATH = "res://content/level2/level2.tscn"
+const LEVEL3_SCENE_PATH = "res://content/general/scenes/winscreen.tscn"
 
 @export var camera: Camera3D  # Assign this in the Inspector
 
+var level2_finished: bool = false
+var level2_lost: bool = false
+
+
+func _ready():
+	Globals.game_won.connect(active_level3_button)
+	Globals.game_lost.connect(active_level2_repeat_button)
 
 func _input(event):
 	if event is InputEventMouseButton and event.pressed and event.button_index == 1:  # Left click
+		
+		if level2_finished:
+			# Load new scene
+			var s = load(LEVEL3_SCENE_PATH)
+			var won_scene = s.instantiate()
+			
+			# Add scene to tree
+			get_tree().root.add_child(won_scene)
+			get_tree().current_scene = won_scene
+			return
+		
+		if level2_lost:
+			SceneSwitcher.switch_scene(LEVEL2_SCENE_PATH)
+			return
+		
 		var mouse_pos = event.position
 		var ray_origin = camera.project_ray_origin(mouse_pos)
 		var ray_dir = camera.project_ray_normal(mouse_pos)
@@ -34,3 +58,11 @@ func _input(event):
 			var t = -ray_origin.y / ray_dir.y
 			if t > 0:
 				pass
+
+
+func active_level3_button():
+	level2_finished = true
+
+
+func active_level2_repeat_button():
+	level2_lost = true

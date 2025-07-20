@@ -2,15 +2,18 @@ extends Node3D
 
 
 const RAY_LENGTH = 1000
+const LEVEL1_SCENE_PATH = "res://content/level1/level1.tscn"
 const LEVEL2_SCENE_PATH = "res://content/level2/level2.tscn"
 
 @export var camera: Camera3D  # Assign this in the Inspector
 
 var level1_finished: bool = false
+var level1_lost: bool = false
 
 
 func _ready():
 	Globals.game_won.connect(active_level2_button)
+	Globals.game_lost.connect(active_level1_repeat_button)
 
 
 func _input(event):
@@ -18,6 +21,10 @@ func _input(event):
 		
 		if level1_finished:
 			SceneSwitcher.switch_scene(LEVEL2_SCENE_PATH)
+			return
+		
+		if level1_lost:
+			SceneSwitcher.switch_scene(LEVEL1_SCENE_PATH)
 			return
 		
 		var mouse_pos = event.position
@@ -56,3 +63,7 @@ func _input(event):
 
 func active_level2_button():
 	level1_finished = true
+
+
+func active_level1_repeat_button():
+	level1_lost = true

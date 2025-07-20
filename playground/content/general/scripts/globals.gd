@@ -1,6 +1,8 @@
 extends Node
 
 
+var MAX_GUESSES: int = 5
+
 # signals
 signal robot_found()
 signal poop_used(hit_point)
@@ -9,7 +11,7 @@ signal game_won()
 signal game_lost()
 
 
-var guesses: int = 5
+var guesses
 
 
 func _ready():
