@@ -1,0 +1,53 @@
+[gd_scene load_steps=7 format=3 uid="uid://dmax8518mdl2m"]
+
+[ext_resource type="Script" uid="uid://28724r2qyotv" path="res://scripts/color_area.gd" id="1_154mx"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yqt3i"]
+size = Vector3(30, 0.1, 30)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_yqt3i"]
+lifetime_randomness = 0.5
+emission_shape_scale = Vector3(15, 0, 15)
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+gravity = Vector3(0, 10, 0)
+scale_min = 0.1
+scale_max = 0.1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yqt3i"]
+albedo_color = Color(2, 2, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_154mx"]
+material = SubResource("StandardMaterial3D_yqt3i")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_154mx"]
+albedo_color = Color(2, 2, 0, 1)
+
+[node name="ColorArea" type="Area3D" node_paths=PackedStringArray("collision_shape", "gpu_particles", "border_box", "border_box_cut")]
+script = ExtResource("1_154mx")
+area_size = Vector2(30, 30)
+area_color = Color(20, 20, 0, 1)
+collision_shape = NodePath("CollisionShape")
+gpu_particles = NodePath("GPUParticles")
+border_box = NodePath("CSGBoxOuter")
+border_box_cut = NodePath("CSGBoxOuter/CSGBoxInner")
+
+[node name="CollisionShape" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
+shape = SubResource("BoxShape3D_yqt3i")
+
+[node name="GPUParticles" type="GPUParticles3D" parent="."]
+cast_shadow = 0
+amount = 200
+visibility_aabb = AABB(-15, 0, -15, 30, 5, 30)
+process_material = SubResource("ParticleProcessMaterial_yqt3i")
+draw_pass_1 = SubResource("BoxMesh_154mx")
+
+[node name="CSGBoxOuter" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
+size = Vector3(30, 0.1, 30)
+material = SubResource("StandardMaterial3D_154mx")
+
+[node name="CSGBoxInner" type="CSGBox3D" parent="CSGBoxOuter"]
+operation = 2
+size = Vector3(29.9, 0.11, 29.9)

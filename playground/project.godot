@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Playground"
-run/main_scene="uid://bt37ffho7b4ib"
+run/main_scene="uid://xl2l4o214au1"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://textures/icon.svg"
 
