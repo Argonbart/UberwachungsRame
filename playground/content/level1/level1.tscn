@@ -1,14 +1,14 @@
 [gd_scene load_steps=14 format=3 uid="uid://bt37ffho7b4ib"]
 
 [ext_resource type="Texture2D" uid="uid://vlt30a3se3t7" path="res://textures/black.png" id="1_8a7m2"]
-[ext_resource type="Script" uid="uid://iey56y6gj52g" path="res://scripts/camera_point.gd" id="2_plydf"]
-[ext_resource type="Script" uid="uid://gcktf1y5hxcn" path="res://scripts/camera.gd" id="3_5ntmo"]
-[ext_resource type="PackedScene" uid="uid://i0l73rfrm2ae" path="res://scenes/npc.tscn" id="4_nkeig"]
-[ext_resource type="Script" uid="uid://d4nqjtxtvpvak" path="res://scripts/input_controller_level1.gd" id="5_nfihu"]
-[ext_resource type="PackedScene" uid="uid://dtlikkilw857" path="res://scenes/poop.tscn" id="6_lgguw"]
-[ext_resource type="Script" uid="uid://b3tsqth6wnv8" path="res://scripts/poop_manager.gd" id="7_jprdt"]
-[ext_resource type="Script" uid="uid://dsaxcbbj1l28s" path="res://scripts/robot_manager.gd" id="8_plydf"]
-[ext_resource type="PackedScene" uid="uid://drvlvg0q4ubgb" path="res://scenes/ui.tscn" id="8_ps2vj"]
+[ext_resource type="Script" uid="uid://iey56y6gj52g" path="res://content/general/scripts/camera_point.gd" id="2_plydf"]
+[ext_resource type="Script" uid="uid://gcktf1y5hxcn" path="res://content/general/scripts/camera.gd" id="3_5ntmo"]
+[ext_resource type="PackedScene" uid="uid://i0l73rfrm2ae" path="res://content/level1/scenes/npc_level1.tscn" id="4_nkeig"]
+[ext_resource type="Script" uid="uid://d4nqjtxtvpvak" path="res://content/level1/scripts/input_controller_level1.gd" id="5_nfihu"]
+[ext_resource type="PackedScene" uid="uid://dtlikkilw857" path="res://content/level1/scenes/poop.tscn" id="6_lgguw"]
+[ext_resource type="Script" uid="uid://b3tsqth6wnv8" path="res://content/level1/scripts/poop_manager.gd" id="7_jprdt"]
+[ext_resource type="Script" uid="uid://dsaxcbbj1l28s" path="res://content/general/scripts/robot_manager.gd" id="8_plydf"]
+[ext_resource type="PackedScene" uid="uid://drvlvg0q4ubgb" path="res://content/general/scenes/ui.tscn" id="8_ps2vj"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_rupst"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)

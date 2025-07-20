@@ -2,10 +2,10 @@
 
 [ext_resource type="Theme" uid="uid://b3b2tit58isnh" path="res://fonts/ui.tres" id="1_pmter"]
 [ext_resource type="Texture2D" uid="uid://bmm01kk7c06ro" path="res://images/intro/frame_000_delay-0.03s.png" id="1_pn48f"]
-[ext_resource type="Script" uid="uid://pqgavmu6d412" path="res://scripts/startbutton.gd" id="2_asafo"]
+[ext_resource type="Script" uid="uid://pqgavmu6d412" path="res://content/general/scripts/startbutton.gd" id="2_asafo"]
 [ext_resource type="Texture2D" uid="uid://c5gmx2qs404ru" path="res://images/intro/frame_001_delay-0.04s.png" id="2_pmter"]
 [ext_resource type="Texture2D" uid="uid://xs0ubj2a3s4m" path="res://images/intro/frame_003_delay-0.03s.png" id="3_asafo"]
-[ext_resource type="Script" uid="uid://crysfv1pu5aej" path="res://scripts/stop_button.gd" id="3_kjihi"]
+[ext_resource type="Script" uid="uid://crysfv1pu5aej" path="res://content/general/scripts/stop_button.gd" id="3_kjihi"]
 [ext_resource type="Texture2D" uid="uid://b7bfbr3mkg1op" path="res://images/intro/frame_004_delay-0.04s.png" id="4_kjihi"]
 [ext_resource type="Texture2D" uid="uid://dd8qcudaqniis" path="res://images/intro/frame_005_delay-0.03s.png" id="5_kc881"]
 [ext_resource type="Texture2D" uid="uid://xhlw7jwhum3" path="res://images/intro/frame_006_delay-0.03s.png" id="6_wkp1v"]

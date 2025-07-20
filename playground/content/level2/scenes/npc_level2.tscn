@@ -1,0 +1,54 @@
+[gd_scene load_steps=5 format=3 uid="uid://2xnfrsu7hhc2"]
+
+[ext_resource type="Script" uid="uid://bm7t2jpvtyb7o" path="res://content/level2/scripts/npc_level2.gd" id="1_u84pr"]
+[ext_resource type="PackedScene" uid="uid://cvpgeuhslyygj" path="res://assets/NPC.glb" id="2_wax1f"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_86l0o"]
+radius = 1.0
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_cwf78"]
+radius = 3.50395
+height = 12.934
+
+[node name="NPC" type="CharacterBody3D" groups=["npc"]]
+script = ExtResource("1_u84pr")
+human_speed = 20.0
+human_max_force = 10.0
+robot_speed = 20.0
+robot_max_force = 20.0
+robot_timer_refresh_rate = 2.0
+colors = Array[Color]([Color(1, 0, 0, 1), Color(0, 1, 0, 1), Color(0, 0, 1, 1), Color(1, 0, 1, 1), Color(1, 1, 0, 1)])
+todos_color_1 = Array[int]([0, 2, 3, 0, 1])
+todos_color_2 = Array[int]([1, 0, 3, 0])
+todos_color_3 = Array[int]([2, 1, 3, 2, 3, 1])
+todos_color_4 = Array[int]([3, 1, 0, 2, 1])
+todos_color_5 = Array[int]([2, 1, 2, 3, 0, 3])
+
+[node name="NPCCollision" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_86l0o")
+disabled = true
+
+[node name="NPCClickArea" type="Area3D" parent="." groups=["clickable"]]
+
+[node name="NPCClickAreaCollision" type="CollisionShape3D" parent="NPCClickArea"]
+shape = SubResource("CapsuleShape3D_cwf78")
+
+[node name="NPCModel" parent="." instance=ExtResource("2_wax1f")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+
+[node name="Skeleton3D" parent="NPCModel/Armature" index="0"]
+bones/4/rotation = Quaternion(-0.167151, 0.486038, 0.235107, 0.824956)
+bones/5/rotation = Quaternion(-0.359389, -0.288865, -0.338962, 0.820062)
+bones/9/rotation = Quaternion(0.832654, 0.00279427, 0.0090111, 0.553713)
+bones/10/rotation = Quaternion(0.139147, -0.22086, -0.107183, 0.95936)
+bones/11/rotation = Quaternion(0.066799, -0.0719231, -0.533756, 0.839922)
+bones/14/rotation = Quaternion(0.00553062, -0.00120932, -0.0577964, 0.998312)
+bones/17/rotation = Quaternion(-0.469936, -0.181145, -0.307214, 0.807444)
+bones/18/rotation = Quaternion(-0.0114081, -0.00198097, 0.312925, 0.949707)
+bones/21/rotation = Quaternion(0.458523, -0.196004, 0.337043, 0.798587)
+bones/22/rotation = Quaternion(0.0114172, 0.00130614, 0.212178, 0.977163)
+
+[node name="AnimationPlayer" parent="NPCModel" index="1"]
+autoplay = "ArmatureAction"
+
+[editable path="NPCModel"]

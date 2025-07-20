@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://dtlikkilw857"]
 
 [ext_resource type="PackedScene" uid="uid://cpsjad7jrd0go" path="res://assets/Poop.glb" id="1_634gh"]
-[ext_resource type="Script" uid="uid://biahlpxhvf633" path="res://scripts/poop.gd" id="1_pkbnx"]
+[ext_resource type="Script" uid="uid://biahlpxhvf633" path="res://content/level1/scripts/poop.gd" id="1_pkbnx"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_634gh"]
 radius = 20.4353

@@ -1,7 +1,7 @@
 extends Node
 
 
-var STARTSCREEN_SCENE_PATH = "res://scenes/startscreen.tscn"
+var STARTSCREEN_SCENE_PATH = "res://content/general/scenes/startscreen.tscn"
 
 
 func _ready() -> void:

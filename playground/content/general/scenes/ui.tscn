@@ -31,6 +31,12 @@ horizontal_alignment = 1
 layout_mode = 2
 text = "Roboter 1/1"
 
+[node name="GuessCounter" type="RichTextLabel" parent="Control/TopText"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+text = "Guesses Left: X"
+
 [node name="KotCounterContainer" type="MarginContainer" parent="Control"]
 layout_mode = 1
 anchors_preset = 2
