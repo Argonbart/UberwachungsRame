@@ -1,7 +1,7 @@
 extends Node
 
 
-var MAX_GUESSES: int = 50
+var MAX_GUESSES: int = 5
 
 # signals
 signal robot_found()

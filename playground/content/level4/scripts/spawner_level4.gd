@@ -22,7 +22,7 @@ func _ready():
 		spawn_robot(house_colors[randi_range(0,3)])
 	
 	for i in range(billy_amount):
-		spawn_billy(house_colors[randi_range(0,3)])
+		spawn_billy()
 
 
 func spawn_human(color: Color):
@@ -50,7 +50,7 @@ func spawn_robot(color: Color):
 	new_npc.set_color(color)
 
 
-func spawn_billy(color: Color):
+func spawn_billy():
 	var new_npc = billy_scene.instantiate()
 	new_npc.position = Vector3(randf_range(-49.0, 49.0), 0.0, randf_range(-49.0, 49.0))
 	npc_spawn_location.call_deferred("add_child", new_npc)

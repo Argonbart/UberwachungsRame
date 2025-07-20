@@ -16,12 +16,10 @@ func _ready():
 func _input(event):
 	if event is InputEventMouseButton and event.pressed and event.button_index == 1:  # Left click
 		
-		# overlay win scene (text)
+		# cleared level
 		if level_finished:
-			var s = load(SceneSwitcher.scene_paths[SceneSwitcher.Scene.END])
-			var won_scene = s.instantiate()
-			get_tree().root.add_child(won_scene)
-			get_tree().current_scene = won_scene
+			SceneSwitcher.switch_scene(SceneSwitcher.Scene.LEVEL4)
+			Globals.shuffle_colors()
 			return
 		
 		# failed level
@@ -58,3 +56,4 @@ func activate_level_button():
 
 func activate_level_repeat_button():
 	level_lost = true
+	SceneSwitcher.add_scene(SceneSwitcher.Scene.LOSE)

@@ -67,3 +67,4 @@ func activate_level_button():
 
 func activate_level_repeat_button():
 	level_lost = true
+	SceneSwitcher.add_scene(SceneSwitcher.Scene.LOSE)

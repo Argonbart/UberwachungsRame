@@ -1,7 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://dtlikkilw857"]
+[gd_scene load_steps=5 format=3 uid="uid://dtlikkilw857"]
 
 [ext_resource type="PackedScene" uid="uid://cpsjad7jrd0go" path="res://assets/3d_models/Poop.glb" id="1_634gh"]
 [ext_resource type="Script" uid="uid://biahlpxhvf633" path="res://content/level1/scripts/poop.gd" id="1_pkbnx"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8ili7"]
+albedo_color = Color(0.498483, 0.23095, 0, 1)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_634gh"]
 radius = 20.4353
@@ -11,6 +14,9 @@ script = ExtResource("1_pkbnx")
 
 [node name="PoopModel" parent="." instance=ExtResource("1_634gh")]
 
+[node name="Icosphere" parent="PoopModel" index="0"]
+material_override = SubResource("StandardMaterial3D_8ili7")
+
 [node name="PoopEffectArea" type="Area3D" parent="."]
 
 [node name="PoopEffectAreaCollision" type="CollisionShape3D" parent="PoopEffectArea"]
@@ -18,3 +24,5 @@ shape = SubResource("SphereShape3D_634gh")
 
 [connection signal="body_entered" from="PoopEffectArea" to="." method="_on_poop_area_body_entered"]
 [connection signal="body_exited" from="PoopEffectArea" to="." method="_on_poop_area_body_exited"]
+
+[editable path="PoopModel"]
