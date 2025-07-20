@@ -27,27 +27,27 @@ albedo_color = Color(2, 2, 0, 1)
 script = ExtResource("1_154mx")
 area_size = Vector2(30, 30)
 area_color = Color(20, 20, 0, 1)
-collision_shape = NodePath("CollisionShape")
-gpu_particles = NodePath("GPUParticles")
-border_box = NodePath("CSGBoxOuter")
-border_box_cut = NodePath("CSGBoxOuter/CSGBoxInner")
+collision_shape = NodePath("ColorAreaCollision")
+gpu_particles = NodePath("ColorAreaParticles")
+border_box = NodePath("ColorAreaOuterBox")
+border_box_cut = NodePath("ColorAreaOuterBox/ColorAreaInnerBoxCutOut")
 
-[node name="CollisionShape" type="CollisionShape3D" parent="."]
+[node name="ColorAreaCollision" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
 shape = SubResource("BoxShape3D_yqt3i")
 
-[node name="GPUParticles" type="GPUParticles3D" parent="."]
+[node name="ColorAreaParticles" type="GPUParticles3D" parent="."]
 cast_shadow = 0
 amount = 200
 visibility_aabb = AABB(-15, 0, -15, 30, 5, 30)
 process_material = SubResource("ParticleProcessMaterial_yqt3i")
 draw_pass_1 = SubResource("BoxMesh_154mx")
 
-[node name="CSGBoxOuter" type="CSGBox3D" parent="."]
+[node name="ColorAreaOuterBox" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
 size = Vector3(30, 0.1, 30)
 material = SubResource("StandardMaterial3D_154mx")
 
-[node name="CSGBoxInner" type="CSGBox3D" parent="CSGBoxOuter"]
+[node name="ColorAreaInnerBoxCutOut" type="CSGBox3D" parent="ColorAreaOuterBox"]
 operation = 2
 size = Vector3(29.9, 0.11, 29.9)

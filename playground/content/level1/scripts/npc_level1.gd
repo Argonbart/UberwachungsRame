@@ -12,19 +12,17 @@ enum NPCType {
 # exports
 @export var npc_type: NPCType
 @export_category("Human Stats")
-@export var human_speed: float = 4.0
-@export var human_max_force: float = 0.4
+@export var human_speed: float = 20.0
+@export var human_max_force: float = 10.0
 @export var human_timer_refresh_rate: float = 0.5
 @export var human_wander_ring_distance: float = 5.0
 @export var human_wander_ring_radius: float = 2.0
 @export_category("Robot Stats")
-@export var robot_speed: float = 4.0
-@export var robot_max_force: float = 0.4
-@export var robot_timer_refresh_rate: float = 0.5
+@export var robot_speed: float = 20.0
+@export var robot_max_force: float = 10.0
+@export var robot_timer_refresh_rate: float = 2.0
 @export var robot_wander_ring_distance: float = 5.0
 @export var robot_wander_ring_radius: float = 2.0
-@export_category("Other Stats")
-@export var colors: Array[Color]
 
 
 # variables
@@ -70,7 +68,7 @@ func _ready():
 	velocity = Vector3.FORWARD.rotated(Vector3.UP, randf_range(0, TAU)) * npc_speed
 	
 	# set random color
-	set_color(colors[randi_range(0, colors.size()-1)])
+	set_color(Globals.colors[randi_range(0, Globals.colors.size()-1)])
 	
 	# connect signals
 	Globals.game_won.connect(stop_movement)
@@ -95,6 +93,7 @@ func _physics_process(delta):
 	if velocity.length() > npc_speed:
 		velocity = velocity.normalized() * npc_speed
 	
+	# poop run
 	if running_from_poop:
 		var run_direction = global_transform.origin - current_poop.global_transform.origin
 		run_direction.y = 0.0
@@ -142,7 +141,7 @@ func wander_robot() -> Vector3:
 	return seek(target_position)
 
 
-# function for human movement
+# function for human movement (aimlessly wandering around)
 func wander_human() -> Vector3:
 	var future = global_transform.origin + velocity.normalized() * npc_wander_ring_distance
 	var offset = Vector3(npc_wander_ring_radius, 0, 0).rotated(Vector3.UP, randf_range(0, TAU))
@@ -150,6 +149,7 @@ func wander_human() -> Vector3:
 	return seek(target)
 
 
+# change robot direction
 func refresh_direction():
 	var new_target = get_random_nav_point()
 	while (new_target - global_transform.origin).length() < 20.0:
@@ -158,12 +158,14 @@ func refresh_direction():
 	target_position = new_target
 
 
+# new point for robot
 func get_random_nav_point() -> Vector3:
 	var x = randf_range(-50, 50)
 	var z = randf_range(-50, 50)
 	return Vector3(x, 0, z)
 
 
+# entered poop range
 func entered_poop(poop):
 	if npc_type == NPCType.ROBOT:
 		return
@@ -171,12 +173,14 @@ func entered_poop(poop):
 	current_poop = poop
 
 
+# exited poop range
 func exited_poop(_poop):
 	if npc_type == NPCType.ROBOT:
 		return
 	running_from_poop = false
 
 
+# set color of the npc
 func set_color(color: Color):
 	var color_material = StandardMaterial3D.new()
 	color_material.albedo_color = color
@@ -188,6 +192,7 @@ func set_color(color: Color):
 	find_child("NPCModel").get_child(0).get_child(0).get_child(5).material_override = color_material
 
 
+# when npc gets clicked by the player
 func clicked():
 	if npc_type == NPCType.ROBOT:
 		Globals.robot_found.emit()
@@ -199,5 +204,6 @@ func clicked():
 		npc_speed /= 3.0
 
 
+# game ends by winning or losing
 func stop_movement():
 	game_finished = true

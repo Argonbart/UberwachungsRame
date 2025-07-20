@@ -17,20 +17,13 @@ enum AreaType {
 
 # exports
 @export var npc_type: NPCType
-@export_category("Human Stats")
-@export var human_speed: float = 4.0
-@export var human_max_force: float = 0.4
-@export var human_timer_refresh_rate: float = 0.5
-@export var human_wander_ring_distance: float = 5.0
-@export var human_wander_ring_radius: float = 2.0
-@export_category("Robot Stats")
-@export var robot_speed: float = 4.0
-@export var robot_max_force: float = 0.4
-@export var robot_timer_refresh_rate: float = 0.5
-@export var robot_wander_ring_distance: float = 5.0
-@export var robot_wander_ring_radius: float = 2.0
-@export_category("Other Stats")
-@export var colors: Array[Color]
+@export_category("NPC Stats")
+@export var npc_speed: float = 20.0
+@export var npc_max_force: float = 10.0
+@export var npc_timer_refresh_rate: float = 0.5
+@export var npc_wander_ring_distance: float = 5.0
+@export var npc_wander_ring_radius: float = 2.0
+@export_category("NPC Paths")
 @export var todos_color_1: Array[AreaType]
 @export var todos_color_2: Array[AreaType]
 @export var todos_color_3: Array[AreaType]
@@ -39,16 +32,8 @@ enum AreaType {
 
 
 # variables
-var npc_speed: float = 4.0
-var npc_max_force: float = 0.4
-var npc_timer_refresh_rate: float = 0.5
-var npc_wander_ring_distance: float = 5.0
-var npc_wander_ring_radius: float = 2.0
-var acceleration: Vector3 = Vector3.ZERO
 var target_position: Vector3
 var timer: Timer
-var running_from_poop: bool = false
-var current_poop
 var game_finished: bool = false
 var todos: Array[AreaType]
 var next_target_idx: int = 0
@@ -56,19 +41,11 @@ var next_target_idx: int = 0
 
 func _ready():
 	
-	# set variables based on npc type
-	npc_speed = human_speed * randf_range(0.5, 2.0)
-	match npc_type:
-		NPCType.HUMAN:
-			npc_max_force = human_max_force
-			npc_timer_refresh_rate = human_timer_refresh_rate
-			npc_wander_ring_distance = human_wander_ring_distance
-			npc_wander_ring_radius = human_wander_ring_radius
-		NPCType.ROBOT:
-			npc_max_force = robot_max_force
-			npc_timer_refresh_rate = robot_timer_refresh_rate
-			npc_wander_ring_distance = robot_wander_ring_distance
-			npc_wander_ring_radius = robot_wander_ring_radius
+	# randomize colors
+	Globals.shuffle_colors()
+	
+	# randomize npc speed
+	npc_speed = npc_speed * randf_range(0.5, 2.0)
 	
 	# create refresh timer
 	timer = Timer.new()
@@ -78,7 +55,7 @@ func _ready():
 	self.add_child(timer)
 	
 	# set random color
-	var random_color = colors[randi_range(0, colors.size()-1)]
+	var random_color = Globals.colors[randi_range(0, Globals.colors.size()-1)]
 	set_color(random_color)
 	
 	# set initial values
@@ -101,11 +78,6 @@ func _physics_process(delta):
 	velocity += wander()
 	if velocity.length() > npc_speed:
 		velocity = velocity.normalized() * npc_speed
-	
-	if running_from_poop:
-		var run_direction = global_transform.origin - current_poop.global_transform.origin
-		run_direction.y = 0.0
-		velocity = run_direction.normalized() * npc_speed * 2.0
 	
 	# move unit
 	move_and_slide()
@@ -149,12 +121,14 @@ func wander() -> Vector3:
 	return seek(target_position)
 
 
+# function to get next color target
 func refresh_direction():
 	if (target_position - global_transform.origin).length() < 10.0:
 		target_position = get_next_color_point(todos[next_target_idx])
 		next_target_idx = posmod((next_target_idx + 1), todos.size())
 
 
+# get position of next color
 func get_next_color_point(color: AreaType) -> Vector3:
 	match color:
 		AreaType.YELLOW:
@@ -168,19 +142,7 @@ func get_next_color_point(color: AreaType) -> Vector3:
 	return Vector3.ZERO
 
 
-func entered_poop(poop):
-	if npc_type == NPCType.ROBOT:
-		return
-	running_from_poop = true
-	current_poop = poop
-
-
-func exited_poop(_poop):
-	if npc_type == NPCType.ROBOT:
-		return
-	running_from_poop = false
-
-
+# set color of the npc
 func set_color(color: Color):
 	var color_material = StandardMaterial3D.new()
 	color_material.albedo_color = color
@@ -192,6 +154,7 @@ func set_color(color: Color):
 	find_child("NPCModel").get_child(0).get_child(0).get_child(5).material_override = color_material
 
 
+# set todos for the npc
 func set_color_path(color: Color):
 	
 	# set random todos if robot
@@ -205,30 +168,30 @@ func set_color_path(color: Color):
 		return
 	
 	# set todos based on color for humans
-	colors.shuffle()
-	if color == colors[0]:
+	if color == Globals.colors[0]:
 		next_target_idx = randi_range(0, todos_color_1.size()-1)
 		target_position = get_next_color_point(todos_color_1[next_target_idx])
 		todos = todos_color_1
-	if color == colors[1]:
+	if color == Globals.colors[1]:
 		next_target_idx = randi_range(0, todos_color_2.size()-1)
 		target_position = get_next_color_point(todos_color_2[next_target_idx])
 		todos = todos_color_2
-	if color == colors[2]:
+	if color == Globals.colors[2]:
 		next_target_idx = randi_range(0, todos_color_3.size()-1)
 		target_position = get_next_color_point(todos_color_3[next_target_idx])
 		todos = todos_color_3
-	if color == colors[3]:
+	if color == Globals.colors[3]:
 		next_target_idx = randi_range(0, todos_color_4.size()-1)
 		target_position = get_next_color_point(todos_color_4[next_target_idx])
 		todos = todos_color_4
-	if color == colors[4]:
+	if color == Globals.colors[4]:
 		next_target_idx = randi_range(0, todos_color_5.size()-1)
 		target_position = get_next_color_point(todos_color_5[next_target_idx])
 		todos = todos_color_5
 	next_target_idx = posmod((next_target_idx + 1), todos.size())
 
 
+# npc clicked
 func clicked():
 	if npc_type == NPCType.ROBOT:
 		Globals.robot_found.emit()
@@ -240,5 +203,6 @@ func clicked():
 		npc_speed /= 3.0
 
 
+# game won or lost
 func stop_movement():
 	game_finished = true

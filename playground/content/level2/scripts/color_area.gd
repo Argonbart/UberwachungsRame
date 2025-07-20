@@ -9,6 +9,7 @@ extends Area3D
 @export var border_box: CSGBox3D
 @export var border_box_cut: CSGBox3D
 
+
 func _ready():
 	
 	# collision shape

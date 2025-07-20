@@ -1,11 +1,7 @@
 extends Node3D
 
 
-const RAY_LENGTH = 1000
-const LEVEL1_SCENE_PATH = "res://content/level1/level1.tscn"
-const LEVEL2_SCENE_PATH = "res://content/level2/level2.tscn"
-
-@export var camera: Camera3D  # Assign this in the Inspector
+@export var camera: Camera3D
 
 var level1_finished: bool = false
 var level1_lost: bool = false
@@ -19,19 +15,22 @@ func _ready():
 func _input(event):
 	if event is InputEventMouseButton and event.pressed and event.button_index == 1:  # Left click = click npc
 		
+		# cleared level
 		if level1_finished:
-			SceneSwitcher.switch_scene(LEVEL2_SCENE_PATH)
+			SceneSwitcher.switch_scene(SceneSwitcher.Scene.LEVEL2)
 			return
 		
+		# failed level
 		if level1_lost:
-			SceneSwitcher.switch_scene(LEVEL1_SCENE_PATH)
+			SceneSwitcher.switch_scene(SceneSwitcher.Scene.LEVEL1)
 			return
 		
+		# game click
 		var mouse_pos = event.position
 		var ray_origin = camera.project_ray_origin(mouse_pos)
 		
 		var space_state = get_world_3d().direct_space_state
-		var end = ray_origin + camera.project_ray_normal(mouse_pos) * RAY_LENGTH
+		var end = ray_origin + camera.project_ray_normal(mouse_pos) * 1000 # RAY_LENGTH
 		var query = PhysicsRayQueryParameters3D.create(ray_origin, end)
 		query.collide_with_areas = true
 		
@@ -40,12 +39,12 @@ func _input(event):
 		var excluded = []
 		while result:
 			var clicked_item = result["collider"]
-			if clicked_item.get_groups().has("clickable"):
+			if clicked_item.get_groups().has("clickable"): # found npc
 				clicked_item.get_parent().clicked()
 				break
 			excluded.append(clicked_item.get_rid())
 			query.exclude = excluded
-			result = space_state.intersect_ray(query)
+			result = space_state.intersect_ray(query) # repeat till no collision found
 	
 	if event is InputEventMouseButton and event.pressed and event.button_index == 2:  # Right click = poop
 		

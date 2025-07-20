@@ -1,13 +1,13 @@
 [gd_scene load_steps=13 format=3 uid="uid://xl2l4o214au1"]
 
-[ext_resource type="Texture2D" uid="uid://vlt30a3se3t7" path="res://textures/black.png" id="1_ulpgp"]
-[ext_resource type="Script" uid="uid://iey56y6gj52g" path="res://content/general/scripts/camera_point.gd" id="2_2ajrl"]
-[ext_resource type="Script" uid="uid://gcktf1y5hxcn" path="res://content/general/scripts/camera.gd" id="3_jn7us"]
+[ext_resource type="Texture2D" uid="uid://vlt30a3se3t7" path="res://assets/textures/black.png" id="1_ulpgp"]
+[ext_resource type="Script" uid="uid://iey56y6gj52g" path="res://content/all_levels/scripts/camera_point.gd" id="2_2ajrl"]
+[ext_resource type="Script" uid="uid://gcktf1y5hxcn" path="res://content/all_levels/scripts/camera.gd" id="3_jn7us"]
 [ext_resource type="PackedScene" uid="uid://2xnfrsu7hhc2" path="res://content/level2/scenes/npc_level2.tscn" id="4_ulpgp"]
 [ext_resource type="Script" uid="uid://7d5xehhkfrxs" path="res://content/level2/scripts/input_controller_level2.gd" id="5_vx34r"]
 [ext_resource type="PackedScene" uid="uid://dmax8518mdl2m" path="res://content/level2/scenes/color_area.tscn" id="6_fdq07"]
-[ext_resource type="Script" uid="uid://dsaxcbbj1l28s" path="res://content/general/scripts/robot_manager.gd" id="7_lb35n"]
-[ext_resource type="PackedScene" uid="uid://drvlvg0q4ubgb" path="res://content/general/scenes/ui.tscn" id="8_ni16p"]
+[ext_resource type="Script" uid="uid://dsaxcbbj1l28s" path="res://content/all_levels/scripts/game_manager.gd" id="7_lb35n"]
+[ext_resource type="PackedScene" uid="uid://drvlvg0q4ubgb" path="res://content/all_levels/scenes/ui.tscn" id="8_ni16p"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_f3b2k"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -63,43 +63,33 @@ npc_type = 1
 
 [node name="NPC3" parent="Humans" instance=ExtResource("4_ulpgp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.2058, 3.8147e-06, 2.58599)
-colors = Array[Color]([Color(1, 0, 1, 1), Color(1, 0, 1, 1), Color(1, 0, 1, 1), Color(1, 0, 1, 1), Color(1, 0, 1, 1)])
 
 [node name="NPC4" parent="Humans" instance=ExtResource("4_ulpgp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.0177, -1.52588e-05, 3.30059)
-colors = Array[Color]([Color(1, 0, 1, 1), Color(1, 0, 1, 1), Color(1, 0, 1, 1), Color(1, 0, 1, 1), Color(1, 0, 1, 1)])
 
 [node name="NPC5" parent="Humans" instance=ExtResource("4_ulpgp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.86031, 0, -3.86321)
-colors = Array[Color]([Color(0, 0, 1, 1), Color(0, 0, 1, 1), Color(0, 0, 1, 1), Color(0, 0, 1, 1), Color(0, 0, 1, 1)])
 
 [node name="NPC6" parent="Humans" instance=ExtResource("4_ulpgp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.52739, 3.8147e-06, -28.5902)
-colors = Array[Color]([Color(0, 0, 1, 1), Color(0, 0, 1, 1), Color(0, 0, 1, 1), Color(0, 0, 1, 1), Color(0, 0, 1, 1)])
 
 [node name="NPC7" parent="Humans" instance=ExtResource("4_ulpgp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.5032, 3.8147e-06, -21.2323)
-colors = Array[Color]([Color(0, 1, 0, 1), Color(0, 1, 0, 1), Color(0, 1, 0, 1), Color(0, 1, 0, 1), Color(0, 1, 0, 1)])
 
 [node name="NPC8" parent="Humans" instance=ExtResource("4_ulpgp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.1323, -3.8147e-06, -33.7093)
-colors = Array[Color]([Color(0, 1, 0, 1), Color(0, 1, 0, 1), Color(0, 1, 0, 1), Color(0, 1, 0, 1), Color(0, 1, 0, 1)])
 
 [node name="NPC9" parent="Humans" instance=ExtResource("4_ulpgp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34.1541, 0, 29.7886)
-colors = Array[Color]([Color(1, 0, 0, 1), Color(1, 0, 0, 1), Color(1, 0, 0, 1), Color(1, 0, 0, 1), Color(1, 0, 0, 1)])
 
 [node name="NPC10" parent="Humans" instance=ExtResource("4_ulpgp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36.0521, 0, -20.216)
-colors = Array[Color]([Color(1, 0, 0, 1), Color(1, 0, 0, 1), Color(1, 0, 0, 1), Color(1, 0, 0, 1), Color(1, 0, 0, 1)])
 
 [node name="NPC11" parent="Humans" instance=ExtResource("4_ulpgp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36.0521, 0, -20.216)
-colors = Array[Color]([Color(1, 1, 0, 1), Color(1, 1, 0, 1), Color(1, 1, 0, 1), Color(1, 1, 0, 1), Color(1, 1, 0, 1)])
 
 [node name="NPC12" parent="Humans" instance=ExtResource("4_ulpgp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36.0521, 0, -20.216)
-colors = Array[Color]([Color(1, 1, 0, 1), Color(1, 1, 0, 1), Color(1, 1, 0, 1), Color(1, 1, 0, 1), Color(1, 1, 0, 1)])
 
 [node name="NPC13" parent="Humans" instance=ExtResource("4_ulpgp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.3527, 0, 32.9312)
@@ -109,9 +99,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.3527, 0, 32.9312)
 
 [node name="Poops" type="Node3D" parent="."]
 
-[node name="InputController" type="Node3D" parent="." node_paths=PackedStringArray("camera")]
+[node name="InputController" type="Node3D" parent="." node_paths=PackedStringArray("camera", "ui")]
 script = ExtResource("5_vx34r")
 camera = NodePath("../CameraPoint/Camera3D")
+ui = NodePath("../UI")
 
 [node name="Areas" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.000480413, 0)
@@ -131,7 +122,7 @@ area_color = Color(20, 0, 20, 1)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30, 0, 30)
 area_color = Color(0, 20, 20, 1)
 
-[node name="RobotManager" type="Node" parent="." node_paths=PackedStringArray("ui", "humans")]
+[node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("ui", "humans")]
 script = ExtResource("7_lb35n")
 ui = NodePath("../UI")
 humans = NodePath("../Humans")

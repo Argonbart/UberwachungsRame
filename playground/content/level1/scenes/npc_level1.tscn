@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://i0l73rfrm2ae"]
 
 [ext_resource type="Script" uid="uid://b46ddbwxvpddk" path="res://content/level1/scripts/npc_level1.gd" id="1_11jcu"]
-[ext_resource type="PackedScene" uid="uid://cvpgeuhslyygj" path="res://assets/NPC.glb" id="2_cwf78"]
+[ext_resource type="PackedScene" uid="uid://cvpgeuhslyygj" path="res://assets/3d_models/NPC.glb" id="2_cwf78"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_86l0o"]
 radius = 1.0

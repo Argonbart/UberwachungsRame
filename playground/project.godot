@@ -13,12 +13,12 @@ config_version=5
 config/name="Playground"
 run/main_scene="uid://djet7caivp7ux"
 config/features=PackedStringArray("4.4", "Forward Plus")
-config/icon="res://textures/icon.svg"
+config/icon="res://assets/textures/icon.svg"
 
 [autoload]
 
-Globals="*res://content/general/scripts/globals.gd"
-SceneSwitcher="*res://content/general/scripts/scene_switcher.gd"
+Globals="*res://content/on_start/scripts/globals.gd"
+SceneSwitcher="*res://content/on_start/scripts/scene_switcher.gd"
 
 [display]
 
