@@ -18,7 +18,7 @@ config/icon="res://assets/textures/icon.svg"
 [autoload]
 
 Globals="*res://content/on_start/scripts/globals.gd"
-SceneSwitcher="*res://content/on_start/scripts/scene_switcher.gd"
+SceneSwitcher="*res://content/on_start/scenes/scene_switcher.tscn"
 
 [display]
 

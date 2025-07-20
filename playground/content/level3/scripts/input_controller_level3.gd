@@ -1,32 +1,36 @@
 extends Node3D
 
 
-@export var camera: Camera3D
+@export var camera: Camera3D  # Assign this in the Inspector
+@export var ui: CanvasLayer
 
 var level_finished: bool = false
 var level_lost: bool = false
 
 
 func _ready():
+	ui.get_child(0).get_child(1).get_child(0).visible = false # hide kot ui
 	Globals.game_won.connect(activate_level_button)
 	Globals.game_lost.connect(activate_level_repeat_button)
 
-
 func _input(event):
-	if event is InputEventMouseButton and event.pressed and event.button_index == 1:  # Left click = click npc
+	if event is InputEventMouseButton and event.pressed and event.button_index == 1:  # Left click
 		
-		# cleared level
+		# overlay win scene (text)
 		if level_finished:
-			SceneSwitcher.switch_scene(SceneSwitcher.Scene.LEVEL2)
-			Globals.shuffle_colors()
+			var s = load(SceneSwitcher.scene_paths[SceneSwitcher.Scene.END])
+			var won_scene = s.instantiate()
+			get_tree().root.add_child(won_scene)
+			get_tree().current_scene = won_scene
 			return
 		
 		# failed level
 		if level_lost:
-			SceneSwitcher.switch_scene(SceneSwitcher.Scene.LEVEL1)
+			SceneSwitcher.switch_scene(SceneSwitcher.Scene.LEVEL3)
+			Globals.shuffle_colors()
 			return
 		
-		# game click
+		# click npc
 		var mouse_pos = event.position
 		var ray_origin = camera.project_ray_origin(mouse_pos)
 		
@@ -40,25 +44,12 @@ func _input(event):
 		var excluded = []
 		while result:
 			var clicked_item = result["collider"]
-			if clicked_item.get_groups().has("clickable"): # found npc
+			if clicked_item.get_groups().has("clickable"):
 				clicked_item.get_parent().clicked()
 				break
 			excluded.append(clicked_item.get_rid())
 			query.exclude = excluded
-			result = space_state.intersect_ray(query) # repeat till no collision found
-	
-	if event is InputEventMouseButton and event.pressed and event.button_index == 2:  # Right click = poop
-		
-		var mouse_pos = event.position
-		var ray_origin = camera.project_ray_origin(mouse_pos)
-		var ray_dir = camera.project_ray_normal(mouse_pos)
-		
-		# Check if ray hits the XZ-plane (where y == 0)
-		if ray_dir.y != 0.0:
-			var t = -ray_origin.y / ray_dir.y
-			if t > 0:
-				var hit_point = ray_origin + ray_dir * t
-				Globals.poop_used.emit(hit_point)
+			result = space_state.intersect_ray(query)
 
 
 func activate_level_button():

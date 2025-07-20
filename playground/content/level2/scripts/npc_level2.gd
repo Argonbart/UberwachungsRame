@@ -24,25 +24,23 @@ enum AreaType {
 @export var npc_wander_ring_distance: float = 5.0
 @export var npc_wander_ring_radius: float = 2.0
 @export_category("NPC Paths")
-@export var todos_color_1: Array[AreaType]
-@export var todos_color_2: Array[AreaType]
-@export var todos_color_3: Array[AreaType]
-@export var todos_color_4: Array[AreaType]
-@export var todos_color_5: Array[AreaType]
 
 
 # variables
 var target_position: Vector3
 var timer: Timer
 var game_finished: bool = false
-var todos: Array[AreaType]
 var next_target_idx: int = 0
+var todos: Array[AreaType]
 
 
 func _ready():
 	
 	# randomize npc speed
 	npc_speed = npc_speed * randf_range(0.5, 2.0)
+	
+	# take todos from parents
+	todos = get_parent().todos
 	
 	# create refresh timer
 	timer = Timer.new()
@@ -56,7 +54,7 @@ func _ready():
 	set_color(random_color)
 	
 	# set initial values
-	set_color_path(random_color)
+	set_color_path()
 	velocity = Vector3.FORWARD.rotated(Vector3.UP, randf_range(0, TAU)) * npc_speed
 	
 	# connect signals
@@ -151,8 +149,8 @@ func set_color(color: Color):
 	find_child("NPCModel").get_child(0).get_child(0).get_child(5).material_override = color_material
 
 
-# set todos for the npc
-func set_color_path(color: Color):
+# set first target
+func set_color_path():
 	
 	# set random todos if robot
 	if npc_type == NPCType.ROBOT:
@@ -164,28 +162,8 @@ func set_color_path(color: Color):
 		next_target_idx = posmod((next_target_idx + 1), todos.size())
 		return
 	
-	# set todos based on color for humans
-	if color == Globals.colors[0]:
-		next_target_idx = randi_range(0, todos_color_1.size()-1)
-		target_position = get_next_color_point(todos_color_1[next_target_idx])
-		todos = todos_color_1
-	if color == Globals.colors[1]:
-		next_target_idx = randi_range(0, todos_color_2.size()-1)
-		target_position = get_next_color_point(todos_color_2[next_target_idx])
-		todos = todos_color_2
-	if color == Globals.colors[2]:
-		next_target_idx = randi_range(0, todos_color_3.size()-1)
-		target_position = get_next_color_point(todos_color_3[next_target_idx])
-		todos = todos_color_3
-	if color == Globals.colors[3]:
-		next_target_idx = randi_range(0, todos_color_4.size()-1)
-		target_position = get_next_color_point(todos_color_4[next_target_idx])
-		todos = todos_color_4
-	if color == Globals.colors[4]:
-		next_target_idx = randi_range(0, todos_color_5.size()-1)
-		target_position = get_next_color_point(todos_color_5[next_target_idx])
-		todos = todos_color_5
-	next_target_idx = posmod((next_target_idx + 1), todos.size())
+	# set first target randomly
+	next_target_idx = randi_range(0, todos.size()-1)
 
 
 # npc clicked

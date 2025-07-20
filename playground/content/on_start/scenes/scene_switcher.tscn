@@ -1,0 +1,16 @@
+[gd_scene load_steps=7 format=3 uid="uid://rc0k0lu0ugtd"]
+
+[ext_resource type="Script" uid="uid://olgmkjormsec" path="res://content/on_start/scripts/scene_switcher.gd" id="1_0xynp"]
+[ext_resource type="PackedScene" uid="uid://d4g85ms722734" path="res://content/on_start/scenes/startscreen.tscn" id="2_c5u6y"]
+[ext_resource type="PackedScene" uid="uid://bt37ffho7b4ib" path="res://content/level1/level1.tscn" id="3_efrp1"]
+[ext_resource type="PackedScene" uid="uid://xl2l4o214au1" path="res://content/level3/level3.tscn" id="4_2ex6s"]
+[ext_resource type="PackedScene" uid="uid://dencmu6ru865" path="res://content/level2/level2.tscn" id="4_efrp1"]
+[ext_resource type="PackedScene" uid="uid://8qbfhg8lgnc4" path="res://content/on_end/scenes/winscreen.tscn" id="5_bnjgh"]
+
+[node name="SceneSwitcher" type="Node"]
+script = ExtResource("1_0xynp")
+scene_path_menu = ExtResource("2_c5u6y")
+scene_path_level1 = ExtResource("3_efrp1")
+scene_path_level2 = ExtResource("4_efrp1")
+scene_path_level3 = ExtResource("4_2ex6s")
+scene_path_end = ExtResource("5_bnjgh")

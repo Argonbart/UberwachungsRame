@@ -4,28 +4,26 @@ extends Node3D
 @export var camera: Camera3D  # Assign this in the Inspector
 @export var ui: CanvasLayer
 
-var level2_finished: bool = false
-var level2_lost: bool = false
+var level_finished: bool = false
+var level_lost: bool = false
 
 
 func _ready():
 	ui.get_child(0).get_child(1).get_child(0).visible = false # hide kot ui
-	Globals.game_won.connect(active_level3_button)
-	Globals.game_lost.connect(active_level2_repeat_button)
+	Globals.game_won.connect(activate_level_button)
+	Globals.game_lost.connect(activate_level_repeat_button)
 
 func _input(event):
 	if event is InputEventMouseButton and event.pressed and event.button_index == 1:  # Left click
 		
-		# overlay win scene (text)
-		if level2_finished:
-			var s = load(SceneSwitcher.scene_paths[SceneSwitcher.Scene.END])
-			var won_scene = s.instantiate()
-			get_tree().root.add_child(won_scene)
-			get_tree().current_scene = won_scene
+		# cleared level
+		if level_finished:
+			SceneSwitcher.switch_scene(SceneSwitcher.Scene.LEVEL3)
+			Globals.shuffle_colors()
 			return
 		
 		# failed level
-		if level2_lost:
+		if level_lost:
 			SceneSwitcher.switch_scene(SceneSwitcher.Scene.LEVEL2)
 			Globals.shuffle_colors()
 			return
@@ -52,9 +50,9 @@ func _input(event):
 			result = space_state.intersect_ray(query)
 
 
-func active_level3_button():
-	level2_finished = true
+func activate_level_button():
+	level_finished = true
 
 
-func active_level2_repeat_button():
-	level2_lost = true
+func activate_level_repeat_button():
+	level_lost = true

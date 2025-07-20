@@ -1,21 +1,33 @@
 extends Node
 
 
+@export var scene_path_menu: PackedScene
+@export var scene_path_level1: PackedScene
+@export var scene_path_level2: PackedScene
+@export var scene_path_level3: PackedScene
+@export var scene_path_end: PackedScene
+
 enum Scene {
 	MENU,
 	LEVEL1,
 	LEVEL2,
+	LEVEL3,
 	END,
 }
 
-var scene_paths = {
-	Scene.MENU: "res://content/on_start/scenes/startscreen.tscn",
-	Scene.LEVEL1: "res://content/level1/level1.tscn",
-	Scene.LEVEL2: "res://content/level2/level2.tscn",
-	Scene.END: "res://content/on_end/scenes/winscreen.tscn",
-}
+var scene_paths = {}
 
 var current_scene = null
+
+
+func _ready():
+	scene_paths = {
+		Scene.MENU: scene_path_menu.resource_path,
+		Scene.LEVEL1: scene_path_level1.resource_path,
+		Scene.LEVEL2: scene_path_level2.resource_path,
+		Scene.LEVEL3: scene_path_level3.resource_path,
+		Scene.END: scene_path_end.resource_path,
+	}
 
 
 func switch_scene(scene: Scene):
